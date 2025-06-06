@@ -1,0 +1,67 @@
+<!-- personas.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Personas</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="icon" href="logo.ico">
+</head>
+
+<body>
+  <h1>Gestión de Personas</h1>
+
+  <form id="persona-form">
+    <input type="text" id="id_persona" placeholder="ID" required />
+    <input type="text" id="nombre" placeholder="Nombre" required />
+    <input type="text" id="apellido1" placeholder="Apellido" required />
+    <input type="text" id="apellido2" placeholder="Segundo Apellido" />
+    <input type="date" id="fecha_nacimiento" placeholder="Fecha de Nacimiento" required />
+    <input type="tel" id="telefono" placeholder="Teléfono" required />
+    <input type="email" id="correo" placeholder="Correo Electrónico" required />
+    <select id="genero" required>
+      <option value="" disabled selected>Seleccione Género</option>
+      <option value="Masculino">Masculino</option>
+      <option value="Femenino">Femenino</option>
+      <option value="Otro">Otro</option>
+    </select>
+    <input type="text" id="direccion" placeholder="Dirección" required />
+    <button type="submit">Agregar Persona</button>
+  </form>
+
+  <h3>Lista de Personas</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Teléfono</th>
+        <th>Correo Electrónico</th>
+        <th>Género</th>
+        <th>Dirección</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="lista-personas">
+      <!-- Aquí se cargan las personas -->
+    </tbody>
+  </table>
+
+  <script type="module" src="modulos/personasApp.js"></script>
+
+  <br>
+  <br>
+  <button onclick="window.location.href='index.html'">🔙 Volver al menú</button>
+
+  <footer>
+    <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+    <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
+
+  </footer>
+  
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Empleados - Sistema Cenada</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="icon" href="logo.ico">
+
+</head>
+
+<body>
+  <h1>Gestión de Empleados</h1>
+
+  <form id="empleado-form">
+    <input type="int" id="id_empleado" placeholder="ID Empleado" required />
+    <input type="int" id="id_persona" placeholder="ID Persona" required />
+    <input type="date" id="fecha_ingreso" placeholder="Fecha de Ingreso" required />
+    <input type="number" id="salario" placeholder="Salario" required />
+    <input type="varchar" id="cargo" placeholder="Cargo" required />
+    <button type="submit">Agregar Empleado</button>
+  </form>
+
+  <h3>Lista de Empleados</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID Empleado</th>
+        <th>ID Persona</th>
+        <th>Fecha Ingreso</th>
+        <th>Salario</th>
+        <th>Cargo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="lista-empleados">
+      <!-- Aquí se insertan los empleados -->
+    </tbody>
+  </table>
+
+<br>
+  <br>
+  <button onclick="window.location.href='index.html'">🔙 Volver al menú</button>
+
+  <script type="module" src="./modulos/empleadosApp.js"></script>
+  <footer>
+    <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+    <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
+
+  </footer>
+
+</body>
+
+</html>

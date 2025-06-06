@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Inventario - Sistema Cenada</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="icon" href="logo.ico">
+</head>
+<body>
+    <h1>Gestión de Inventario</h1>
+
+    <form id="form-inventario">
+    <!-- lista de id producto -->
+        <select id="id_producto_select">
+            <option value="" disabled selected>Seleccione ID</option>
+            <!-- Aquí se llenarán los ID de productos con JS -->
+            
+        </select>
+        <select id="nombre_producto_select">
+            <option value="" disabled selected>Seleccione Nombre</option>
+            <!-- Aquí se llenarán los nombres de productos con JS -->
+        </select>
+
+        <input type="number" id="cantidad" placeholder="Cantidad en inventario" required />
+        <input type="date" id="fecha_ingreso" placeholder="Fecha de ingreso" required />
+        <button type="submit">Agregar al Inventario</button>
+    </form>
+
+    <h3>Lista de Inventario</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Producto</th>
+                <th>Nombre Producto</th>
+                <th>Cantidad</th>
+                <th>Fecha de Ingreso</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-inventario">
+            <!-- Aquí van las filas generadas con JS -->
+        </tbody>
+    </table>
+
+    <br><br>
+    <button onclick="window.location.href='index.html'">🔙 Volver al menú</button>
+
+    <footer>
+        <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+        <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
+    </footer>
+
+    <script type="module" src="./modulos/inventarioApp.js"></script>
+</body>
+
+
+
+</html>

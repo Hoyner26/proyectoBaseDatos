@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Proveedores - Sistema Cenada</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="icon" href="logo.ico">
+
+</head>
+
+<body>
+  <h1>Gestión de Proveedores</h1>
+
+  <form id="proveedor-form">
+    <input type="int" id="id_proveedor" placeholder="Id Proveedor" required />
+    <input type="text" id="nombre" placeholder="Nombre del proveedor" required />
+    <input type="text" id="razonSocial" placeholder="Razon Social" required />
+    <input type="text" id="telefono" placeholder="Teléfono" />
+    <input type="email" id="correo_electronico" placeholder="Correo electrónico" />
+    <input type="text" id="direccion" placeholder="Dirección general" />
+    <button type="submit">Agregar Proveedor</button>
+  </form>
+
+  <h3>Lista de Proveedores</h3>
+  <table id="proveedores-table">
+    <thead>
+      <tr>
+        <th>Id Proveedor</th>
+        <th>Nombre</th>
+        <th>Razon Social</th>
+        <th>Teléfono</th>
+        <th>Correo Electrónico</th>
+        <th>Dirección</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="lista-proveedores">
+      <!-- Aquí se llenarán los proveedores -->
+    </tbody>
+
+  </table>
+
+  <br>
+  <br>
+  <button onclick="window.location.href='index.html'">🔙 Volver al menú</button>
+  <footer>
+    <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+    <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
+
+  </footer>
+  <script type="module" src="./modulos/proveedoresApp.js"></script>
+</body>
+
+</html>

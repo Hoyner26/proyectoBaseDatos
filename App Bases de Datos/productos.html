@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Productos - Sistema Cenada</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="icon" href="logo.ico">
+
+</head>
+
+<body>
+  <h1>Gestión de Productos</h1>
+
+  <form id="producto-form">
+    <input type="text" id="id_producto" placeholder="ID del producto" required />
+    <input type="text" id="nombre" placeholder="Nombre del producto" required />
+    <input type="text" id="descripcion" placeholder="Descripción" />
+    <input type="number" id="precio" placeholder="Precio ₡" step="0.01" required />
+    <input type="text" id="unidad" placeholder="Unidad (kg, und, etc)" required />
+    <input type="text" id="tipo" placeholder="Tipo de producto" />
+    <button type="submit">Agregar Producto</button>
+  </form>
+
+  <h3>Lista de Productos</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID Producto</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Unidad</th>
+        <th>Tipo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="lista-productos">
+      <!-- Aquí van las filas generadas con JS -->
+    </tbody>
+  </table>
+
+
+  <br>
+  <br>
+  <button onclick="window.location.href='index.html'">🔙 Volver al menú</button>
+  <footer>
+    <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+    <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
+
+  </footer>
+  <script type="module" src="./modulos/productosApp.js"></script>
+</body>
+
+</html>

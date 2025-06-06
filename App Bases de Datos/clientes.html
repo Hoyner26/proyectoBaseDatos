@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Clientes - Sistema Cenada</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="icon" href="logo.ico">
+
+</head>
+
+<body>
+  <h1>Gestión de Clientes</h1>
+
+  <form id="cliente-form">
+
+
+    <input type="text" id="id_cliente" placeholder="ID del cliente" required />
+    <input type="text" id="id_persona" placeholder="ID de la persona" required />
+    <input type="text" id="tipo_cliente" placeholder="Tipo de cliente" required />
+    <input type="text" id="codigo_frecuente" placeholder="Código frecuente" />
+    <input type="text" id="estado_pago_preferido" placeholder="Estado de pago preferido" required />
+    <input type="number" id="limite_credito" placeholder="Límite de crédito ₡" step="0.01" required />
+    <button type="submit">Agregar Cliente</button>
+  </form>
+
+
+  <h3>Lista de Clientes</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Id Cliente</th>
+        <th>Id Persona</th>
+        <th>Tipo</th>
+        <th>Código</th>
+        <th>Estado</th>
+        <th>Límite de Crédito</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="lista-clientes">
+      <!-- Clientes se cargan aquí -->
+    </tbody>
+  </table>
+  <script type="module" src="./modulos/clientesApp.js"></script>
+  <br>
+  <br>
+  <button onclick="window.location.href='index.html'">🔙 Volver al menú</button>
+
+  <footer>
+    <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+    <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
+
+  </footer>
+</body>
+
+</html>
