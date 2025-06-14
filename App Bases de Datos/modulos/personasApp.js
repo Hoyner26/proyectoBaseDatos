@@ -42,6 +42,13 @@ form?.addEventListener("submit", async (e) => {
     return;
   }
 
+  const telefonosInputs = document.querySelectorAll(
+    'input[name="telefonos[]"]'
+  );
+  const correosInputs = document.querySelectorAll('input[name="correos[]"]');
+  nueva.telefonos = Array.from(telefonosInputs).map((input) => input.value);
+  nueva.correos = Array.from(correosInputs).map((input) => input.value);
+
   await agregarPersona(nueva);
   form.reset();
   cargarPersonas();
@@ -147,4 +154,24 @@ document.addEventListener("DOMContentLoaded", () => {
   cargarPersonas();
   cargarGeneros();
   cargarProvincias();
+});
+
+document.getElementById("agregar-correo").addEventListener("click", () => {
+  const container = document.getElementById("correos-container");
+  const input = document.createElement("input");
+  input.type = "email";
+  input.name = "correos[]";
+  input.placeholder = "Correo Electrónico";
+  input.required = true;
+  container.appendChild(input);
+});
+
+document.getElementById("agregar-telefono").addEventListener("click", () => {
+  const container = document.getElementById("telefonos-container");
+  const input = document.createElement("input");
+  input.type = "tel";
+  input.name = "telefonos[]";
+  input.placeholder = "Teléfono";
+  input.required = true;
+  container.appendChild(input);
 });

@@ -80,6 +80,7 @@
             placeholder="Número de Cédula"
             required
           />
+
           <input type="text" id="nombre" placeholder="Nombre" required />
           <input
             type="text"
@@ -88,19 +89,32 @@
             required
           />
           <input type="text" id="apellido2" placeholder="Segundo Apellido" />
-          <input
-            type="date"
-            id="fecha_nacimiento"
-            title="Fecha de Nacimiento"
-            required
-          />
-          <input type="tel" id="telefono" placeholder="Teléfono" required />
-          <input
-            type="email"
-            id="correo_electronico"
-            placeholder="Correo Electrónico"
-            required
-          />
+
+          <div id="telefonos-container" class="multi-input-container">
+            <label>Teléfonos:</label>
+            <input
+              type="tel"
+              name="telefonos[]"
+              placeholder="Teléfono"
+              required
+            />
+          </div>
+          <button type="button" id="agregar-telefono" class="add-input-button">
+            + Agregar otro teléfono
+          </button>
+
+          <div id="correos-container" class="multi-input-container">
+            <label>Correos Electrónicos:</label>
+            <input
+              type="email"
+              name="correos[]"
+              placeholder="Correo Electrónico"
+              required
+            />
+          </div>
+          <button type="button" id="agregar-correo" class="add-input-button">
+            + Agregar otro correo
+          </button>
 
           <select id="genero" class="select-verde" required>
             <option value="" disabled selected>Seleccione Género</option>
@@ -150,7 +164,6 @@
             <tr>
               <th>ID</th>
               <th>Nombre Completo</th>
-              <th>Fecha Nac.</th>
               <th>Teléfono</th>
               <th>Correo</th>
               <th>Género</th>

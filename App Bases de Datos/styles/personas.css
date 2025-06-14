@@ -137,3 +137,25 @@
     margin-bottom: 0.5rem; /* Space between stacked buttons */
   }
 }
+
+.multi-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.add-input-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.add-input-button:hover {
+  background-color: #43a047;
+}
