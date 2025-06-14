@@ -64,10 +64,17 @@ async function cargarPersonas() {
     fila.innerHTML = `
       <td>${persona.id_persona}</td>
       <td>${persona.nombre} ${persona.apellido1} ${persona.apellido2}</td>
+      <td>${persona.telefonos?.map((t) => t.telefono).join(", ") || ""}</td>
+      <td>${
+        persona.correos?.map((c) => c.correo_electronico).join(", ") || ""
+      }</td>
       <td>${persona.genero}</td>
-      <td>${persona.distrito}</td>
-      <td>${persona.senas}</td>
-      <td><button class="btn-eliminar" data-id="${persona.id_persona}">Eliminar</button></td>
+      <td>${persona.provincia}, ${persona.canton}, ${persona.distrito}, ${
+      persona.senas
+    }</td>
+      <td><button class="btn-eliminar" data-id="${
+        persona.id_persona
+      }">Eliminar</button></td>
     `;
     lista.appendChild(fila);
   });
