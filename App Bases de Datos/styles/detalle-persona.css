@@ -1,0 +1,63 @@
+.details-card {
+  background-color: var(--card-background);
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px var(--shadow-light);
+  margin-bottom: 2rem;
+}
+
+.details-card p {
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+.details-card strong {
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+}
+
+.details-card h3 {
+  color: var(--primary-color);
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid var(--secondary-color);
+  padding-bottom: 0.3rem;
+}
+
+.details-card ul {
+  list-style: disc;
+  margin-left: 20px;
+  padding: 0;
+}
+
+.details-card ul li {
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+/* Reusa los estilos de .form-buttons y .back-button de personas.css si están en style.css */
+/* Si no, cópialos aquí */
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end; /* Align buttons to the right */
+  margin-top: 1rem;
+}
+
+.back-button {
+  background-color: #6c757d; /* Un gris neutro */
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
+}
+
+.back-button:hover {
+  background-color: #5a6268; /* Darker gray */
+  transform: translateY(-2px);
+}

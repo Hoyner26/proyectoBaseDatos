@@ -1,4 +1,4 @@
-// personasApp.js
+// modulos/personasApp.js
 import {
   agregarPersona,
   obtenerPersonas,
@@ -15,7 +15,6 @@ form?.addEventListener("submit", async (e) => {
     nombre: document.getElementById("nombre").value,
     apellido1: document.getElementById("apellido1").value,
     apellido2: document.getElementById("apellido2").value,
-    // ¡CORRECCIÓN AQUÍ! Usar 'genero' y 'distrito' (singular)
     genero: parseInt(document.getElementById("genero").value),
     distrito: parseInt(document.getElementById("distrito").value),
     senas: document.getElementById("senas").value,
@@ -46,6 +45,7 @@ form?.addEventListener("submit", async (e) => {
     'input[name="telefonos[]"]'
   );
   const correosInputs = document.querySelectorAll('input[name="correos[]"]');
+
   nueva.telefonos = Array.from(telefonosInputs).map((input) => input.value);
   nueva.correos = Array.from(correosInputs).map((input) => input.value);
 
@@ -61,25 +61,27 @@ async function cargarPersonas() {
 
   personas.forEach((persona) => {
     const fila = document.createElement("tr");
+
     fila.innerHTML = `
       <td>${persona.id_persona}</td>
-      <td>${persona.nombre} ${persona.apellido1} ${persona.apellido2}</td>
-      <td>${persona.telefonos?.map((t) => t.telefono).join(", ") || ""}</td>
-      <td>${
-        persona.correos?.map((c) => c.correo_electronico).join(", ") || ""
-      }</td>
-      <td>${persona.genero}</td>
-      <td>${persona.provincia}, ${persona.canton}, ${persona.distrito}, ${
-      persona.senas
-    }</td>
-      <td><button class="btn-eliminar" data-id="${
-        persona.id_persona
-      }">Eliminar</button></td>
+      <td>${persona.nombre} ${persona.apellido1} ${persona.apellido2 || ""}</td>
+      <td class="actions-column">
+          <a href="detalle-persona.html?id=${
+            persona.id_persona
+          }" class="show-more-button-link"><i class="fa-solid fa-eye"></i> Mostrar Más</a>
+          <button class="edit-button" data-id="${
+            persona.id_persona
+          }"><i class="fa-solid fa-edit"></i></button>
+          <button class="delete-button" data-id="${
+            persona.id_persona
+          }"><i class="fa-solid fa-trash-can"></i></button>
+      </td>
     `;
     lista.appendChild(fila);
   });
 
-  document.querySelectorAll(".btn-eliminar").forEach((boton) => {
+  // Event listeners para los botones de eliminar (ya existía, lo mantengo aquí)
+  document.querySelectorAll(".delete-button").forEach((boton) => {
     boton.addEventListener("click", async () => {
       const id = boton.dataset.id;
       if (confirm(`¿Seguro que desea eliminar la persona con ID ${id}?`)) {
@@ -88,14 +90,25 @@ async function cargarPersonas() {
       }
     });
   });
+
+  // Asumo que tienes botones de editar, añado un listener básico aquí.
+  // Deberás implementar la lógica de edición.
+  document.querySelectorAll(".edit-button").forEach((boton) => {
+    boton.addEventListener("click", async () => {
+      const id = boton.dataset.id;
+      alert(
+        `Funcionalidad de editar para la persona con ID: ${id} (no implementada aún)`
+      );
+      // Aquí iría la lógica para cargar los datos de la persona en el formulario de edición
+    });
+  });
 }
 
 async function cargarGeneros() {
   const { data } = await supabase.from("generos").select("*");
-  // ¡CORRECCIÓN AQUÍ! Usar 'genero' (singular)
   const select = document.getElementById("genero");
   select.innerHTML =
-    '<option value="" disabled selected>Seleccione Género</option>'; // Opcional: para restablecer las opciones
+    '<option value="" disabled selected>Seleccione Género</option>';
   data.forEach((g) => {
     const option = document.createElement("option");
     option.value = g.id_genero;
@@ -106,10 +119,9 @@ async function cargarGeneros() {
 
 async function cargarProvincias() {
   const { data } = await supabase.from("provincias").select("*");
-  // ¡CORRECCIÓN AQUÍ! Usar 'provincia' (singular)
   const select = document.getElementById("provincia");
   select.innerHTML =
-    '<option value="" disabled selected>Seleccione Provincia</option>'; // Opcional: para restablecer las opciones
+    '<option value="" disabled selected>Seleccione Provincia</option>';
   data.forEach((p) => {
     const option = document.createElement("option");
     option.value = p.id_provincia;

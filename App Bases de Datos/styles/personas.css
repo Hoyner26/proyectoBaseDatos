@@ -159,3 +159,101 @@
 .add-input-button:hover {
   background-color: #43a047;
 }
+/* ... (estilos existentes) ... */
+
+/* Estilos para los contenedores de múltiples contactos en la tabla */
+.contact-list-container {
+  max-height: 2.5em; /* Ajusta esto para mostrar solo el primer elemento */
+  overflow: hidden; /* Oculta el desbordamiento */
+  position: relative;
+  transition: max-height 0.3s ease-out;
+}
+
+.contact-list-container.expanded {
+  max-height: fit-content; /* Expande para mostrar todo el contenido */
+}
+
+.contact-list-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-list-container li {
+  margin-bottom: 0.2em;
+}
+
+.show-more-button {
+  background: none;
+  border: none;
+  color: var(--primary-color); /* Usa tu color principal para un enlace */
+  cursor: pointer;
+  font-size: 0.9em;
+  padding: 0;
+  text-decoration: underline;
+  margin-top: 0.5em;
+  display: block; /* Para que ocupe su propia línea */
+}
+
+.show-more-button:hover {
+  color: #388e3c; /* Tono más oscuro al pasar el ratón */
+}
+
+/* Estilo para los iconos dentro de los botones */
+.submit-button i,
+.back-button i {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+}
+
+/* Acciones en la tabla (ej. botones de editar/eliminar) */
+#lista-personas .actions-column button {
+  margin-right: 5px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  background-color: #007bff; /* Ejemplo para botón de editar */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#lista-personas .actions-column button.delete-button {
+  background-color: #dc3545; /* Ejemplo para botón de eliminar */
+}
+
+#lista-personas .actions-column button:hover {
+  opacity: 0.9;
+}
+/* ... (estilos existentes en personas.css) ... */
+
+/* Estilos para el botón "Mostrar Más" en la tabla principal */
+.show-more-button-link {
+  background-color: #17a2b8; /* Un color azul/cian para diferenciar */
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none; /* Quita el subrayado del enlace */
+  display: inline-block; /* Para que el padding y margen funcionen bien */
+  margin-right: 5px; /* Espacio entre este y los otros botones */
+}
+
+.show-more-button-link:hover {
+  background-color: #138496; /* Tono más oscuro al pasar el ratón */
+  transform: translateY(-2px);
+}
+
+.show-more-button-link i {
+  margin-right: 5px; /* Espacio entre el icono y el texto */
+}
+
+/* Acciones en la tabla */
+#lista-personas .actions-column button,
+#lista-personas .actions-column .show-more-button-link {
+  margin-right: 5px; /* Ajusta el margen para todos los elementos en la columna de acciones */
+  /* Revisa si necesitas ajustar el padding o font-size para que todos los botones se vean uniformes */
+}
