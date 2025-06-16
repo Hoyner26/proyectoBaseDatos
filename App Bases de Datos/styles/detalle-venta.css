@@ -1,0 +1,64 @@
+.details-card {
+  background-color: var(--card-background);
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px var(--shadow-light);
+  margin-bottom: 2rem;
+}
+
+.details-card p {
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+.details-card strong {
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+.products-table th,
+.products-table td {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.products-table thead {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.products-table tbody tr:nth-child(even) {
+  background-color: var(--table-row-alt);
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.back-button {
+  background-color: #6c757d;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+}

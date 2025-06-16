@@ -1,63 +1,159 @@
-<!-- ventas.html -->
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Ventas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Ventas - Frutas y Verduras Cenada</title>
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/ventas.css" />
     <link rel="icon" href="logo.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
   </head>
+
   <body>
-    <h1>Gestión de Ventas</h1>
+    <header class="main-header">
+      <div class="header-content">
+        <img src="logo.png" alt="Logo del sitio" class="header-logo" />
+        <h1>Gestión de Ventas</h1>
+      </div>
+      <button id="logout-button" class="logout-button">
+        <i class="fa-solid fa-lock"></i> Cerrar Sesión
+      </button>
+    </header>
 
-    <form id="venta-form">
-      <input type="text" id="id_venta" placeholder="ID Venta" required />
-      <input type="date" id="fecha" required />
-      <input
-        type="text"
-        id="cliente"
-        placeholder="Nombre del Cliente"
-        required
-      />
-      <input type="text" id="producto" placeholder="Producto" required />
-      <input type="number" id="cantidad" placeholder="Cantidad" required />
-      <input
-        type="number"
-        id="precio_unitario"
-        placeholder="Precio Unitario"
-        required
-      />
-      <button type="submit">Registrar Venta</button>
-    </form>
+    <nav class="main-nav">
+      <ul>
+        <li>
+          <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+        </li>
+        <li>
+          <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
+        </li>
+        <li>
+          <a href="productos.html"
+            ><i class="fa-solid fa-basket-shopping"></i> Productos</a
+          >
+        </li>
+        <li>
+          <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
+        </li>
+        <li>
+          <a href="empleados.html"
+            ><i class="fa-solid fa-user-tie"></i> Empleados</a
+          >
+        </li>
+        <li>
+          <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
+        </li>
+        <li>
+          <a href="facturas.html"
+            ><i class="fa-solid fa-file-invoice"></i> Facturas</a
+          >
+        </li>
+        <li>
+          <a href="proveedores.html"
+            ><i class="fa-solid fa-truck"></i> Proveedores</a
+          >
+        </li>
+        <li>
+          <a href="inventario.html"
+            ><i class="fa-solid fa-boxes-stacked"></i> Inventario</a
+          >
+        </li>
+      </ul>
+    </nav>
 
-    <h3>Lista de Ventas</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>ID Venta</th>
-          <th>Fecha</th>
-          <th>Cliente</th>
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Precio Unitario</th>
-          <th>Total</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="lista-ventas">
-        <!-- Aquí se cargan las ventas -->
-      </tbody>
-    </table>
+    <main class="main-content">
+      <h2>Registro de Nueva Venta</h2>
+      <form id="venta-form" class="venta-form">
+        <div class="form-grid">
+          <select id="cliente" class="select-verde" required>
+            <option value="" disabled selected>Seleccione Cliente</option>
+          </select>
 
+          <select id="empleado" class="select-verde" required>
+            <option value="" disabled selected>Seleccione Empleado</option>
+          </select>
+
+          <select id="tipo_pago" class="select-verde" required>
+            <option value="" disabled selected>Seleccione Tipo de Pago</option>
+            <option value="Efectivo">Efectivo</option>
+            <option value="Tarjeta">Tarjeta</option>
+            <option value="SINPE Móvil">SINPE Móvil</option>
+            <option value="Transferencia">Transferencia</option>
+          </select>
+
+          <select id="estado_pago" class="select-verde" required>
+            <option value="" disabled selected>
+              Seleccione Estado del Pago
+            </option>
+            <option value="Pagado">Pagado</option>
+            <option value="Pendiente">Pendiente</option>
+          </select>
+        </div>
+
+        <h3 class="subsection-title">Productos de la Venta</h3>
+        <div id="productos-container" class="productos-container"></div>
+        <button type="button" id="agregar-producto" class="add-input-button">
+          <i class="fa-solid fa-plus"></i> Agregar Producto
+        </button>
+
+        <div class="total-container">
+          <label for="total">Total de la Venta:</label>
+          <input
+            type="text"
+            id="total"
+            placeholder="₡ 0.00"
+            readonly
+            class="total-input"
+          />
+        </div>
+
+        <div class="form-buttons">
+          <button type="submit" class="submit-button">
+            <i class="fa-solid fa-plus-circle"></i> Registrar Venta
+          </button>
+          <button
+            type="button"
+            onclick="window.location.href='index.html'"
+            class="back-button"
+          >
+            <i class="fa-solid fa-arrow-left"></i> Volver al Menú
+          </button>
+        </div>
+      </form>
+
+      <h2>Lista de Ventas Registradas</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID Venta</th>
+              <th>Cliente</th>
+              <th>Empleado</th>
+              <th>Fecha</th>
+              <th>Total</th>
+              <th>Estado Pago</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="lista-ventas"></tbody>
+        </table>
+      </div>
+    </main>
+
+    <script src="modulos/logout.js"></script>
     <script type="module" src="modulos/ventasApp.js"></script>
 
-    <br /><br />
-    <button onclick="window.location.href='index.html'">
-      🔙 Volver al menú
-    </button>
-
     <footer class="main-footer">
-      <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+      <p>© 2025 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
       <p>
         Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander
         Ubeda"
