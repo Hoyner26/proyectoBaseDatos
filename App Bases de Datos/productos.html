@@ -5,120 +5,104 @@
   <meta charset="UTF-8" />
   <title>Productos - Sistema Cenada</title>
   <link rel="stylesheet" href="styles/style.css" />
-  <link rel="stylesheet" href="styles/producto.css"  />
+  <link rel="stylesheet" href="styles/producto.css" />
   <link rel="icon" href="logo.ico">
-  <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
 <body>
-   <header class="main-header">
-      <div class="header-content">
-        <img src="logo.png" alt="Logo del sitio" class="header-logo" />
-        <h1>Gestión de Productos</h1>
-      </div>
-      <button id="logout-button" class="logout-button">
-        <i class="fa-solid fa-lock"></i> Cerrar Sesión
-      </button>
-    </header>
+  <header class="main-header">
+    <div class="header-content">
+      <img src="logo.png" alt="Logo del sitio" class="header-logo" />
+      <h1>Gestión de Productos</h1>
+    </div>
+    <button id="logout-button" class="logout-button">
+      <i class="fa-solid fa-lock"></i> Cerrar Sesión
+    </button>
+  </header>
 
-    <nav class="main-nav">
+  <nav class="main-nav">
 
-     
-      <ul>
-        <li>
-          <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-        </li>
-        <li>
-          <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
-        </li>
-        <li>
-          <a href="productos.html"
-            ><i class="fa-solid fa-basket-shopping"></i> Productos</a
-          >
-        </li>
-        <li>
-          <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
-        </li>
-        <li>
-          <a href="empleados.html"
-            ><i class="fa-solid fa-user-tie"></i> Empleados</a
-          >
-        </li>
-        <li>
-          <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
-        </li>
-        <li>
-          <a href="facturas.html"
-            ><i class="fa-solid fa-file-invoice"></i> Facturas</a
-          >
-        </li>
-        <li>
-          <a href="proveedores.html"
-            ><i class="fa-solid fa-truck"></i> Proveedores</a
-          >
-        </li>
-        <li>
-          <a href="inventario.html"
-            ><i class="fa-solid fa-boxes-stacked"></i> Inventario</a
-          >
-        </li>
-      </ul>
-    </nav>
+
+    <ul>
+      <li>
+        <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      </li>
+      <li>
+        <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
+      </li>
+      <li>
+        <a href="productos.html"><i class="fa-solid fa-basket-shopping"></i> Productos</a>
+      </li>
+      <li>
+        <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
+      </li>
+      <li>
+        <a href="empleados.html"><i class="fa-solid fa-user-tie"></i> Empleados</a>
+      </li>
+      <li>
+        <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
+      </li>
+      <li>
+        <a href="facturas.html"><i class="fa-solid fa-file-invoice"></i> Facturas</a>
+      </li>
+      <li>
+        <a href="proveedores.html"><i class="fa-solid fa-truck"></i> Proveedores</a>
+      </li>
+      <li>
+        <a href="inventario.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a>
+      </li>
+    </ul>
+  </nav>
 
   <main class="main-content">
-  <h2>Registro de Nuevo Producto</h2>
-  
-  <form id="producto-form">
-    <input type="text" id="id_producto" placeholder="ID del producto" required />
-    <input type="text" id="nombre" placeholder="Nombre del producto" required />
-    <input type="text" id="descripcion" placeholder="Descripción" />
-    <input type="number" id="precio" placeholder="Precio ₡" step="0.01" required />
-    <input type="text" id="unidad" placeholder="Unidad (kg, und, etc)" required />
-    <input type="text" id="tipo" placeholder="Tipo de producto" />
-    <button type="submit">Agregar Producto</button>
-  </form>
+    <h2>Registro de Nuevo Producto</h2>
 
-  <h3>Lista de Productos</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>ID Producto</th>
-        <th>Nombre</th>
-        <th>Descripción</th>
-        <th>Precio</th>
-        <th>Unidad</th>
-        <th>Tipo</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody id="lista-productos">
-      <!-- Aquí van las filas generadas con JS -->
-    </tbody>
-  </table>
+    <form id="producto-form">
+      <input type="text" id="id_producto" placeholder="ID del producto" required />
+      <input type="text" id="nombre" placeholder="Nombre del producto" required />
+      <input type="text" id="descripcion" placeholder="Descripción" />
+      <input type="number" id="precio" placeholder="Precio ₡" step="0.01" required />
+      <input type="text" id="unidad" placeholder="Unidad (kg, und, etc)" required />
+      <input type="text" id="tipo" placeholder="Tipo de producto" />
+      <button type="submit">Agregar Producto</button>
+    </form>
 
-  <div class="btn-volver">
-      <button onclick="window.location.href='index.html'" class="back-button">
-        <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
-      </button>
-    </div>
+    <h3>Lista de Productos</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID Producto</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Unidad</th>
+          <th>Tipo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="lista-productos">
+        <!-- Aquí van las filas generadas con JS -->
+      </tbody>
+    </table>
+
+
 
   </main>
-  <br>
-  <br>
 
 
-  <footer class="main-footer"> 
+  <div class="btn-volver">
+    <button onclick="window.location.href='index.html'" class="back-button">
+      <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
+    </button>
+  </div>
+  <br>
+  <br>
+  <footer class="main-footer">
     <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
     <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
 
