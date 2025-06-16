@@ -66,15 +66,12 @@ async function cargarPersonas() {
       <td>${persona.id_persona}</td>
       <td>${persona.nombre} ${persona.apellido1} ${persona.apellido2 || ""}</td>
       <td class="actions-column">
-          <a href="detalle-persona.html?id=${
-            persona.id_persona
-          }" class="show-more-button-link"><i class="fa-solid fa-eye"></i> Mostrar Más</a>
-          <button class="edit-button" data-id="${
-            persona.id_persona
-          }"><i class="fa-solid fa-edit"></i></button>
-          <button class="delete-button" data-id="${
-            persona.id_persona
-          }"><i class="fa-solid fa-trash-can"></i></button>
+          <a href="detalle-persona.html?id=${persona.id_persona
+      }" class="show-more-button-link"><i class="fa-solid fa-eye"></i> Mostrar Más</a>
+          <button class="edit-button" data-id="${persona.id_persona
+      }"><i class="fa-solid fa-edit"></i></button>
+          <button class="delete-button" data-id="${persona.id_persona
+      }"><i class="fa-solid fa-trash-can"></i></button>
       </td>
     `;
     lista.appendChild(fila);
@@ -85,7 +82,9 @@ async function cargarPersonas() {
     boton.addEventListener("click", async () => {
       const id = boton.dataset.id;
       if (confirm(`¿Seguro que desea eliminar la persona con ID ${id}?`)) {
+        await supabase.from("telefonos_personas").delete().eq("id_persona", id);
         await eliminarPersonaPorId(parseInt(id));
+
         cargarPersonas();
       }
     });

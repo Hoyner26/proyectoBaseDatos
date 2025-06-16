@@ -95,13 +95,43 @@ export async function obtenerPersonas() {
 }
 
 export async function eliminarPersonaPorId(id) {
-  const { error } = await supabase
-    .from("persona") // nombre de la tabla
+  // 1. Eliminar teléfonos
+  const { error: errorTelefonos } = await supabase
+    .from("telefonos_personas")
     .delete()
-    .eq("id_persona", id); // campo clave primaria
+    .eq("id_persona", id);
 
-  if (error) {
-    console.error("Error al eliminar persona:", error.message);
+  if (errorTelefonos) {
+    console.error("Error al eliminar teléfonos:", errorTelefonos.message);
+    alert("No se pudo eliminar los teléfonos relacionados.");
+    return;
+  }
+
+  // 2. Eliminar correos
+  const { error: errorCorreos } = await supabase
+    .from("correos_personas")
+    .delete()
+    .eq("id_persona", id);
+
+  if (errorCorreos) {
+    console.error("Error al eliminar correos:", errorCorreos.message);
+    alert("No se pudo eliminar los correos relacionados.");
+    return;
+  }
+
+  // 3. Eliminar la persona
+  const { error: errorPersona } = await supabase
+    .from("persona")
+    .delete()
+    .eq("id_persona", id);
+
+  if (errorPersona) {
+    console.error("Error al eliminar persona:", errorPersona.message);
     alert("No se pudo eliminar la persona.");
+  } else {
+    alert("Persona eliminada correctamente.");
+    // Opcional: recargar lista o redirigir
+    location.reload();
   }
 }
+
