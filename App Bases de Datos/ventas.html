@@ -1,0 +1,67 @@
+<!-- ventas.html -->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ventas</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="icon" href="logo.ico" />
+  </head>
+  <body>
+    <h1>Gestión de Ventas</h1>
+
+    <form id="venta-form">
+      <input type="text" id="id_venta" placeholder="ID Venta" required />
+      <input type="date" id="fecha" required />
+      <input
+        type="text"
+        id="cliente"
+        placeholder="Nombre del Cliente"
+        required
+      />
+      <input type="text" id="producto" placeholder="Producto" required />
+      <input type="number" id="cantidad" placeholder="Cantidad" required />
+      <input
+        type="number"
+        id="precio_unitario"
+        placeholder="Precio Unitario"
+        required
+      />
+      <button type="submit">Registrar Venta</button>
+    </form>
+
+    <h3>Lista de Ventas</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID Venta</th>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio Unitario</th>
+          <th>Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="lista-ventas">
+        <!-- Aquí se cargan las ventas -->
+      </tbody>
+    </table>
+
+    <script type="module" src="modulos/ventasApp.js"></script>
+
+    <br /><br />
+    <button onclick="window.location.href='index.html'">
+      🔙 Volver al menú
+    </button>
+
+    <footer class="main-footer">
+      <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+      <p>
+        Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander
+        Ubeda"
+      </p>
+    </footer>
+  </body>
+</html>

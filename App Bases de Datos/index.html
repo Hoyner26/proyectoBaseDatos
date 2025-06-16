@@ -1,41 +1,187 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Gestión - Frutas y Verduras Cenada</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="icon" href="logo.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script type="module">
+      import { supabase } from "./supabaseClient.js";
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Sistema de Gestión</title>
-  <link rel="stylesheet" href="styles/style.css" />
-  <link rel="icon" href="logo.ico">
-</head>
+      // Nota: Esta consulta se mantiene aquí por si quieres mostrar datos reales
+      // en el dashboard en el futuro. Por ahora, los datos son de ejemplo.
+      const fetchData = async () => {
+        const { data, error } = await supabase.from("frutas").select("*");
+        if (error) console.error("Error fetching data:", error);
+        // console.log("Datos de frutas:", data);
+      };
+      fetchData();
 
-<body>
+      // Implementar el contador de personas (ejemplo simple)
+      // Idealmente, esto se haría en un módulo JS separado y traería datos reales de Supabase
+      document.addEventListener("DOMContentLoaded", () => {
+        const totalPersonasElement = document.getElementById("total-personas");
+        const totalProductosElement =
+          document.getElementById("total-productos");
+        const totalVentasElement = document.getElementById("total-ventas");
 
+        // Datos de ejemplo
+        totalPersonasElement.textContent = "150"; // Reemplazar con count real de Supabase
+        totalProductosElement.textContent = "230"; // Reemplazar con count real de Supabase
+        totalVentasElement.textContent = "85"; // Reemplazar con count real de Supabase
+      });
+    </script>
+  </head>
 
-  <h1><img src="logo.png" alt="Logo del sitio" width="50" /> Sistema de Gestión - Frutas y Verduras Cenada</h1>
-  <nav>
-    <ul>
-      <li><a href="personas.html">👤 Personas</a></li>
-      <li><a href="productos.html">🧺 Productos</a></li>
-      <li><a href="clientes.html">👥 Clientes</a></li>
-      <li><a href="empleados.html">👨‍💼 Empleados</a></li>
-      <li><a href="ventas.html">🧾 Ventas</a></li>
-      <li><a href="facturas.html">📄 Facturas</a></li>
-      <li><a href="proveedores.html">🚚 Proveedores</a></li>
-      <li><a href="inventario.html">📦 Inventario</a></li>
-    </ul>
-  </nav>
+  <body>
+    <header class="main-header">
+      <div class="header-content">
+        <img src="logo.png" alt="Logo del sitio" class="header-logo" />
+        <h1>Sistema de Gestión - Frutas y Verduras Cenada</h1>
+      </div>
+      <button id="logout-button" class="logout-button">
+        <i class="fa-solid fa-lock"></i> Cerrar Sesión
+      </button>
+    </header>
 
+    <nav class="main-nav">
+      <ul>
+        <li>
+          <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
+        </li>
+        <li>
+          <a href="productos.html"
+            ><i class="fa-solid fa-basket-shopping"></i> Productos</a
+          >
+        </li>
+        <li>
+          <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
+        </li>
+        <li>
+          <a href="empleados.html"
+            ><i class="fa-solid fa-user-tie"></i> Empleados</a
+          >
+        </li>
+        <li>
+          <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
+        </li>
+        <li>
+          <a href="facturas.html"
+            ><i class="fa-solid fa-file-invoice"></i> Facturas</a
+          >
+        </li>
+        <li>
+          <a href="proveedores.html"
+            ><i class="fa-solid fa-truck"></i> Proveedores</a
+          >
+        </li>
+        <li>
+          <a href="inventario.html"
+            ><i class="fa-solid fa-boxes-stacked"></i> Inventario</a
+          >
+        </li>
+      </ul>
+    </nav>
 
-  <button id="logout-button">🔒 Cerrar Sesión</button>
-  <script src="modulos/logout.js"></script>
+    <main class="main-content dashboard-content">
+      <h2 class="welcome-heading">¡Bienvenido, Alexander! 👋</h2>
+      <p class="dashboard-intro">
+        Aquí tienes un resumen rápido y accesos directos de tu sistema de
+        gestión.
+      </p>
 
+      <div class="dashboard-grid">
+        <div class="stat-card">
+          <div class="card-icon people-icon">
+            <i class="fa-solid fa-user-group"></i>
+          </div>
+          <div class="card-info">
+            <span class="card-value" id="total-personas">0</span>
+            <span class="card-label">Total Personas</span>
+          </div>
+        </div>
 
-  <footer>
-    <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
-    <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
+        <div class="stat-card">
+          <div class="card-icon products-icon">
+            <i class="fa-solid fa-boxes-stacked"></i>
+          </div>
+          <div class="card-info">
+            <span class="card-value" id="total-productos">0</span>
+            <span class="card-label">Productos en Inventario</span>
+          </div>
+        </div>
 
-  </footer>
+        <div class="stat-card">
+          <div class="card-icon sales-icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div class="card-info">
+            <span class="card-value" id="total-ventas">0</span>
+            <span class="card-label">Ventas Registradas Hoy</span>
+          </div>
+        </div>
 
-</body>
+        <a href="personas.html" class="quick-access-card">
+          <i class="fa-solid fa-user-plus"></i>
+          <span>Registrar Nueva Persona</span>
+        </a>
 
+        <a href="ventas.html" class="quick-access-card">
+          <i class="fa-solid fa-cash-register"></i>
+          <span>Registrar Nueva Venta</span>
+        </a>
+
+        <a href="inventario.html" class="quick-access-card">
+          <i class="fa-solid fa-box-open"></i>
+          <span>Ver Inventario Completo</span>
+        </a>
+      </div>
+
+      <div class="recent-activity">
+        <h3>
+          <i class="fa-solid fa-clock-rotate-left"></i> Actividad Reciente
+        </h3>
+        <ul class="data-list">
+          <li>
+            <strong>2025-06-13:</strong> Nueva persona agregada: Juan Pérez (ID:
+            12345)
+          </li>
+          <li><strong>2025-06-13:</strong> Venta #0012 procesada por $55.00</li>
+          <li>
+            <strong>2025-06-12:</strong> Inventario de "Manzanas Rojas"
+            actualizado (+10 kg)
+          </li>
+          <li>
+            <strong>2025-06-12:</strong> Nuevo cliente registrado: Frutería La
+            Esquina
+          </li>
+        </ul>
+        <button class="view-all-button">
+          <i class="fa-solid fa-eye"></i> Ver todo el historial
+        </button>
+      </div>
+    </main>
+
+    <script src="modulos/logout.js"></script>
+
+    <footer class="main-footer">
+      <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+      <p>
+        Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander
+        Ubeda"
+      </p>
+    </footer>
+  </body>
 </html>
