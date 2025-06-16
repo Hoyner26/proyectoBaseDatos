@@ -257,3 +257,31 @@
   margin-right: 5px; /* Ajusta el margen para todos los elementos en la columna de acciones */
   /* Revisa si necesitas ajustar el padding o font-size para que todos los botones se vean uniformes */
 }
+
+.btn-volver {
+  text-align: center; /* Centra horizontalmente si quieres */
+  margin-top: 20px;
+}
+
+.back-button {
+  background-color: #28a745; /* Verde base */
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #218838; /* Verde más oscuro al pasar el mouse */
+}
+
+.back-button i {
+  font-size: 18px;
+}
