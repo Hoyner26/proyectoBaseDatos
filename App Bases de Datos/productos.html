@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <title>Productos - Sistema Cenada</title>
   <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/producto.css"  />
   <link rel="icon" href="logo.ico">
   <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
@@ -74,7 +75,10 @@
         </li>
       </ul>
     </nav>
-    
+
+  <main class="main-content">
+  <h2>Registro de Nuevo Producto</h2>
+  
   <form id="producto-form">
     <input type="text" id="id_producto" placeholder="ID del producto" required />
     <input type="text" id="nombre" placeholder="Nombre del producto" required />
@@ -103,10 +107,17 @@
     </tbody>
   </table>
 
+  <div class="btn-volver">
+      <button onclick="window.location.href='index.html'" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
+      </button>
+    </div>
 
+  </main>
   <br>
   <br>
-  <button onclick="window.location.href='index.html'">🔙 Volver al menú</button>
+
+
   <footer class="main-footer"> 
     <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
     <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
