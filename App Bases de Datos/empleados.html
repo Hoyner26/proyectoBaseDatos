@@ -60,13 +60,28 @@
 
   <main class="main-content">
     <form id="empleado-form">
-      <input type="int" id="id_empleado" placeholder="ID Empleado" required />
-      <input type="int" id="id_persona" placeholder="ID Persona" required />
-      <input type="date" id="fecha_ingreso" placeholder="Fecha de Ingreso" required />
-      <input type="number" id="salario" placeholder="Salario" required />
-      <input type="varchar" id="cargo" placeholder="Cargo" required />
-      <button type="submit">Agregar Empleado</button>
-    </form>
+  <input type="number" id="id_empleado" placeholder="ID Empleado" required />
+
+  <!-- Select dinámico para ID persona -->
+  <select id="id_persona" required>
+    <option value="">Seleccione una persona</option>
+    <!-- Se llenará con JS -->
+  </select>
+
+  <input type="date" id="fecha_ingreso" required />
+  <input type="number" id="salario" placeholder="Salario" required />
+
+  <!-- Select fijo para cargo -->
+  <select id="cargo" required>
+    <option value="">Seleccione un cargo</option>
+    <option value="Cajero">Cajero</option>
+    <option value="Vendedor">Vendedor</option>
+    <option value="Encargado de Inventario">Encargado de Inventario</option>
+    <option value="Gerente">Gerente</option>
+  </select>
+
+  <button type="submit">Agregar Empleado</button>
+</form>
 
     <h3>Lista de Empleados</h3>
     <table>

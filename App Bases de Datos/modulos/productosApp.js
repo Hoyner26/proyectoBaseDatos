@@ -64,6 +64,7 @@ async function cargarProductos() {
     boton.addEventListener('click', async () => {
       const id = boton.dataset.id;
       if (confirm(`¿Seguro que desea eliminar el producto con ID ${id}?`)) {
+        
         await eliminarProductoPorId(parseInt(id));
         cargarProductos();
       }
