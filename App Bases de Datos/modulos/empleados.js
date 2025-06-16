@@ -13,6 +13,7 @@ export async function agregarEmpleado(empleado) {
 }
 
 export async function eliminarEmpleado(id) {
+  
   const { error } = await supabase.from('empleado').delete().eq('id_empleado', id);
   if (error) console.error('Error al eliminar empleado:', error.message);
 }

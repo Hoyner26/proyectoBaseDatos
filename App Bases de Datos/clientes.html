@@ -79,16 +79,34 @@
     <h2>Administración de Clientes</h2>
     <p>Agrega, edita o elimina clientes del sistema.</p>
   <form id="cliente-form">
+  <input type="number" id="id_cliente" placeholder="ID del cliente" required />
 
+  <!-- Select de personas -->
+  <select id="id_persona" required>
+    <option value="">Seleccione una persona</option>
+    <!-- Se llena dinámicamente con JS -->
+  </select>
 
-    <input type="text" id="id_cliente" placeholder="ID del cliente" required />
-    <input type="text" id="id_persona" placeholder="ID de la persona" required />
-    <input type="text" id="tipo_cliente" placeholder="Tipo de cliente" required />
-    <input type="text" id="codigo_frecuente" placeholder="Código frecuente" />
-    <input type="text" id="estado_pago_preferido" placeholder="Estado de pago preferido" required />
-    <input type="number" id="limite_credito" placeholder="Límite de crédito ₡" step="0.01" required />
-    <button type="submit">Agregar Cliente</button>
-  </form>
+  <!-- Select tipo de cliente -->
+  <select id="tipo_cliente" required>
+    <option value="">Seleccione el tipo de cliente</option>
+    <option value="Mayorista">Mayorista</option>
+    <option value="Minorista">Minorista</option>
+  </select>
+
+  <input type="text" id="codigo_frecuente" placeholder="Código frecuente" required />
+
+  <!-- Select estado de pago -->
+  <select id="estado_pago_preferido" required>
+    <option value="">Seleccione estado de pago</option>
+    <option value="Contado">Contado</option>
+    <option value="Crédito">Crédito</option>
+  </select>
+
+  <input type="number" id="limite_credito" placeholder="Límite de crédito ₡" step="0.01" required />
+
+  <button type="submit">Agregar Cliente</button>
+</form>
 
 
   <h3>Lista de Clientes</h3>
