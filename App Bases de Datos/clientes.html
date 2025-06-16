@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <title>Clientes - Sistema Cenada</title>
   <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/cliente.css" />
   <link rel="icon" href="logo.ico">
   <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
@@ -74,7 +75,9 @@
       </ul>
     </nav>
     
-  
+  <main class="main-content">
+    <h2>Administración de Clientes</h2>
+    <p>Agrega, edita o elimina clientes del sistema.</p>
   <form id="cliente-form">
 
 
@@ -108,7 +111,13 @@
   <script type="module" src="./modulos/clientesApp.js"></script>
   <br>
   <br>
-  <button onclick="window.location.href='index.html'">🔙 Volver al menú</button>
+  <div class="btn-volver">
+      <button onclick="window.location.href='index.html'" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
+      </button>
+    </div>
+
+</main>
 
   <footer class="main-footer">
     <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
