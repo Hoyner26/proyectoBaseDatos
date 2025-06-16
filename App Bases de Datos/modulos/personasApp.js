@@ -82,7 +82,6 @@ async function cargarPersonas() {
     boton.addEventListener("click", async () => {
       const id = boton.dataset.id;
       if (confirm(`¿Seguro que desea eliminar la persona con ID ${id}?`)) {
-        await supabase.from("telefonos_personas").delete().eq("id_persona", id);
         await eliminarPersonaPorId(parseInt(id));
 
         cargarPersonas();

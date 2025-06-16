@@ -17,7 +17,7 @@ form?.addEventListener('submit', async (e) => {
     precio: parseFloat(document.getElementById('precio').value),
     unidad_medida: document.getElementById('unidad').value,
     tipo_producto: document.getElementById('tipo').value,
-    
+
   };
   // ✅ VALIDACIÓN: evitar duplicados por id_producto
   const productos = await obtenerProductos();
@@ -43,27 +43,29 @@ async function cargarProductos() {
   productos.forEach(producto => {
     const fila = document.createElement('tr');
     fila.innerHTML = `
-      <td>${producto.id_producto}</td>
-      <td>${producto.nombre_producto}</td>
-      <td>${producto.descripcion}</td>
-      <td>₡${producto.precio}</td>
-      <td>${producto.unidad_medida}</td>
-      <td>${producto.tipo_producto}</td>
-      
-      <td><button class="btn-eliminar" data-id="${producto.id_producto}">Eliminar</button></td>
-    `;
+  <td>${producto.id_producto}</td>
+  <td>${producto.nombre_producto}</td>
+  <td>${producto.descripcion}</td>
+  <td>₡${producto.precio.toFixed(2)}</td>
+  <td>${producto.unidad_medida}</td>
+  <td>${producto.tipo_producto}</td>
+  <td>
+    <button class="accion-btn ver-btn"><i class="fa-solid fa-eye"></i></button>
+    <button class="accion-btn editar-btn" data-id="${producto.id_producto}"><i class="fa-solid fa-edit"></i></button>
+    <button class="accion-btn eliminar-btn" data-id="${producto.id_producto}"><i class="fa-solid fa-trash-can"></i></button>
+  </td>
+`;
     lista.appendChild(fila);
   });
 
 
 
-  // Agregar eventos a los botones después de renderizar
-  document.querySelectorAll('.btn-eliminar').forEach(boton => {
+  document.querySelectorAll('.eliminar-btn').forEach(boton => {
     boton.addEventListener('click', async () => {
       const id = boton.dataset.id;
       if (confirm(`¿Seguro que desea eliminar el producto con ID ${id}?`)) {
         await eliminarProductoPorId(parseInt(id));
-        cargarProductos(); // recargar
+        cargarProductos();
       }
     });
   });

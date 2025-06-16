@@ -284,3 +284,24 @@
 .back-button i {
   font-size: 18px;
 }
+.accion-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.ver-btn {
+  background-color: #17a2b8; /* azul claro */
+}
+
+.editar-btn {
+  background-color: #007bff; /* azul */
+}
+
+.eliminar-btn {
+  background-color: #dc3545; /* rojo */
+}
