@@ -1,4 +1,4 @@
-// modulos/empleados.js
+// modulos/inventario.js
 import { supabase } from './supabaseClient.js';
 
 export async function obtenerInventario() {
@@ -8,8 +8,8 @@ export async function obtenerInventario() {
 }
 
 export async function agregarInventario(inventario) {
-  const { error } = await supabase.from('inventario').insert([empleado]);
-  if (error) console.error('Error al insertar empleado:', error.message);
+  const { error } = await supabase.from('inventario').insert([inventario]);
+  if (error) console.error('Error al insertar inventario:', error.message);
 }
 
 export async function eliminarInventario(id) {
