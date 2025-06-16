@@ -5,106 +5,94 @@
   <meta charset="UTF-8" />
   <title>Empleados - Sistema Cenada</title>
   <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/empleado.css" />
   <link rel="icon" href="logo.ico">
-   <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
   <header class="main-header">
-      <div class="header-content">
-        <img src="logo.png" alt="Logo del sitio" class="header-logo" />
-        <h1>Gestión de Empleados</h1>
-      </div>
-      <button id="logout-button" class="logout-button">
-        <i class="fa-solid fa-lock"></i> Cerrar Sesión
+    <div class="header-content">
+      <img src="logo.png" alt="Logo del sitio" class="header-logo" />
+      <h1>Gestión de Empleados</h1>
+    </div>
+    <button id="logout-button" class="logout-button">
+      <i class="fa-solid fa-lock"></i> Cerrar Sesión
+    </button>
+  </header>
+
+  <nav class="main-nav">
+
+
+    <ul>
+      <li>
+        <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      </li>
+      <li>
+        <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
+      </li>
+      <li>
+        <a href="productos.html"><i class="fa-solid fa-basket-shopping"></i> Productos</a>
+      </li>
+      <li>
+        <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
+      </li>
+      <li>
+        <a href="empleados.html"><i class="fa-solid fa-user-tie"></i> Empleados</a>
+      </li>
+      <li>
+        <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
+      </li>
+      <li>
+        <a href="facturas.html"><i class="fa-solid fa-file-invoice"></i> Facturas</a>
+      </li>
+      <li>
+        <a href="proveedores.html"><i class="fa-solid fa-truck"></i> Proveedores</a>
+      </li>
+      <li>
+        <a href="inventario.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <form id="empleado-form">
+      <input type="int" id="id_empleado" placeholder="ID Empleado" required />
+      <input type="int" id="id_persona" placeholder="ID Persona" required />
+      <input type="date" id="fecha_ingreso" placeholder="Fecha de Ingreso" required />
+      <input type="number" id="salario" placeholder="Salario" required />
+      <input type="varchar" id="cargo" placeholder="Cargo" required />
+      <button type="submit">Agregar Empleado</button>
+    </form>
+
+    <h3>Lista de Empleados</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>ID Empleado</th>
+          <th>ID Persona</th>
+          <th>Fecha Ingreso</th>
+          <th>Salario</th>
+          <th>Cargo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="lista-empleados">
+        <!-- Aquí se insertan los empleados -->
+      </tbody>
+    </table>
+
+    <br>
+    <br>
+    <div class="btn-volver">
+      <button onclick="window.location.href='index.html'" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
       </button>
-    </header>
-
-    <nav class="main-nav">
-
-     
-      <ul>
-        <li>
-          <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-        </li>
-        <li>
-          <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
-        </li>
-        <li>
-          <a href="productos.html"
-            ><i class="fa-solid fa-basket-shopping"></i> Productos</a
-          >
-        </li>
-        <li>
-          <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
-        </li>
-        <li>
-          <a href="empleados.html"
-            ><i class="fa-solid fa-user-tie"></i> Empleados</a
-          >
-        </li>
-        <li>
-          <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
-        </li>
-        <li>
-          <a href="facturas.html"
-            ><i class="fa-solid fa-file-invoice"></i> Facturas</a
-          >
-        </li>
-        <li>
-          <a href="proveedores.html"
-            ><i class="fa-solid fa-truck"></i> Proveedores</a
-          >
-        </li>
-        <li>
-          <a href="inventario.html"
-            ><i class="fa-solid fa-boxes-stacked"></i> Inventario</a
-          >
-        </li>
-      </ul>
-    </nav>
-    
-
-  <form id="empleado-form">
-    <input type="int" id="id_empleado" placeholder="ID Empleado" required />
-    <input type="int" id="id_persona" placeholder="ID Persona" required />
-    <input type="date" id="fecha_ingreso" placeholder="Fecha de Ingreso" required />
-    <input type="number" id="salario" placeholder="Salario" required />
-    <input type="varchar" id="cargo" placeholder="Cargo" required />
-    <button type="submit">Agregar Empleado</button>
-  </form>
-
-  <h3>Lista de Empleados</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>ID Empleado</th>
-        <th>ID Persona</th>
-        <th>Fecha Ingreso</th>
-        <th>Salario</th>
-        <th>Cargo</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody id="lista-empleados">
-      <!-- Aquí se insertan los empleados -->
-    </tbody>
-  </table>
-
-<br>
-  <br>
-  <button onclick="window.location.href='index.html'">🔙 Volver al menú</button>
-
+    </div>
+  </main>
   <script type="module" src="./modulos/empleadosApp.js"></script>
   <footer class="main-footer">
     <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
