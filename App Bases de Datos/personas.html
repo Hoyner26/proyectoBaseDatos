@@ -1,190 +1,154 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestión de Personas - Frutas y Verduras Cenada</title>
-    <link rel="stylesheet" href="styles/style.css" />
-    <link rel="stylesheet" href="styles/personas.css" />
-    <link rel="icon" href="logo.ico" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
 
-  <body>
-    <header class="main-header">
-      <div class="header-content">
-        <img src="logo.png" alt="Logo del sitio" class="header-logo" />
-        <h1>Gestión de Personas</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestión de Personas - Frutas y Verduras Cenada</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/personas.css" />
+  <link rel="icon" href="logo.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+</head>
+
+<body>
+  <header class="main-header">
+    <div class="header-content">
+      <img src="logo.png" alt="Logo del sitio" class="header-logo" />
+      <h1>Gestión de Personas</h1>
+    </div>
+    <button id="logout-button" class="logout-button">
+      <i class="fa-solid fa-lock"></i> Cerrar Sesión
+    </button>
+  </header>
+
+  <nav class="main-nav">
+
+
+    <ul>
+      <li>
+        <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      </li>
+      <li>
+        <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
+      </li>
+      <li>
+        <a href="productos.html"><i class="fa-solid fa-basket-shopping"></i> Productos</a>
+      </li>
+      <li>
+        <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
+      </li>
+      <li>
+        <a href="empleados.html"><i class="fa-solid fa-user-tie"></i> Empleados</a>
+      </li>
+      <li>
+        <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
+      </li>
+      <li>
+        <a href="facturas.html"><i class="fa-solid fa-file-invoice"></i> Facturas</a>
+      </li>
+      <li>
+        <a href="proveedores.html"><i class="fa-solid fa-truck"></i> Proveedores</a>
+      </li>
+      <li>
+        <a href="inventario.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <h2>Registro de Nueva Persona</h2>
+    <form id="persona-form" class="persona-form">
+      <div class="form-grid">
+        <input type="text" id="id_persona" placeholder="Número de Cédula" required />
+
+        <input type="text" id="nombre" placeholder="Nombre" required />
+        <input type="text" id="apellido1" placeholder="Primer Apellido" required />
+        <input type="text" id="apellido2" placeholder="Segundo Apellido" />
+
+        <div id="telefonos-container" class="multi-input-container">
+          <label>Teléfonos:</label>
+          <input type="tel" name="telefonos[]" placeholder="Teléfono" required />
+        </div>
+        <button type="button" id="agregar-telefono" class="add-input-button">
+          + Agregar otro teléfono
+        </button>
+
+        <div id="correos-container" class="multi-input-container">
+          <label>Correos Electrónicos:</label>
+          <input type="email" name="correos[]" placeholder="Correo Electrónico" required />
+        </div>
+        <button type="button" id="agregar-correo" class="add-input-button">
+          + Agregar otro correo
+        </button>
+
+        <select id="genero" class="select-verde" required>
+          <option value="" disabled selected>Seleccione Género</option>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+          <option value="Otro">Otro</option>
+        </select>
+
+        <select id="provincia" class="select-verde" required>
+          <option value="" disabled selected>Seleccione Provincia</option>
+        </select>
+
+        <select id="canton" class="select-verde" required disabled>
+          <option value="" disabled selected>Seleccione Cantón</option>
+        </select>
+
+        <select id="distrito" class="select-verde" required disabled>
+          <option value="" disabled selected>Seleccione Distrito</option>
+        </select>
       </div>
-      <button id="logout-button" class="logout-button">
-        <i class="fa-solid fa-lock"></i> Cerrar Sesión
-      </button>
-    </header>
+      <input type="text" id="senas" placeholder="Señas Exactas de Dirección" required class="full-width-input" />
 
-    <nav class="main-nav">
+      <div class="form-buttons">
+        <button type="submit" class="submit-button">
+          <i class="fa-solid fa-plus-circle"></i> Agregar Persona
+        </button>
+        
+      </div>
+    </form>
 
-     
-      <ul>
-        <li>
-          <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-        </li>
-        <li>
-          <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
-        </li>
-        <li>
-          <a href="productos.html"
-            ><i class="fa-solid fa-basket-shopping"></i> Productos</a
-          >
-        </li>
-        <li>
-          <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
-        </li>
-        <li>
-          <a href="empleados.html"
-            ><i class="fa-solid fa-user-tie"></i> Empleados</a
-          >
-        </li>
-        <li>
-          <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
-        </li>
-        <li>
-          <a href="facturas.html"
-            ><i class="fa-solid fa-file-invoice"></i> Facturas</a
-          >
-        </li>
-        <li>
-          <a href="proveedores.html"
-            ><i class="fa-solid fa-truck"></i> Proveedores</a
-          >
-        </li>
-        <li>
-          <a href="inventario.html"
-            ><i class="fa-solid fa-boxes-stacked"></i> Inventario</a
-          >
-        </li>
-      </ul>
-    </nav>
-
-    <main class="main-content">
-      <h2>Registro de Nueva Persona</h2>
-      <form id="persona-form" class="persona-form">
-        <div class="form-grid">
-          <input
-            type="text"
-            id="id_persona"
-            placeholder="Número de Cédula"
-            required
-          />
-
-          <input type="text" id="nombre" placeholder="Nombre" required />
-          <input
-            type="text"
-            id="apellido1"
-            placeholder="Primer Apellido"
-            required
-          />
-          <input type="text" id="apellido2" placeholder="Segundo Apellido" />
-
-          <div id="telefonos-container" class="multi-input-container">
-            <label>Teléfonos:</label>
-            <input
-              type="tel"
-              name="telefonos[]"
-              placeholder="Teléfono"
-              required
-            />
-          </div>
-          <button type="button" id="agregar-telefono" class="add-input-button">
-            + Agregar otro teléfono
-          </button>
-
-          <div id="correos-container" class="multi-input-container">
-            <label>Correos Electrónicos:</label>
-            <input
-              type="email"
-              name="correos[]"
-              placeholder="Correo Electrónico"
-              required
-            />
-          </div>
-          <button type="button" id="agregar-correo" class="add-input-button">
-            + Agregar otro correo
-          </button>
-
-          <select id="genero" class="select-verde" required>
-            <option value="" disabled selected>Seleccione Género</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Femenino">Femenino</option>
-            <option value="Otro">Otro</option>
-          </select>
-
-          <select id="provincia" class="select-verde" required>
-            <option value="" disabled selected>Seleccione Provincia</option>
-          </select>
-
-          <select id="canton" class="select-verde" required disabled>
-            <option value="" disabled selected>Seleccione Cantón</option>
-          </select>
-
-          <select id="distrito" class="select-verde" required disabled>
-            <option value="" disabled selected>Seleccione Distrito</option>
-          </select>
-        </div>
-        <input
-          type="text"
-          id="senas"
-          placeholder="Señas Exactas de Dirección"
-          required
-          class="full-width-input"
-        />
-
-        <div class="form-buttons">
-          <button type="submit" class="submit-button">
-            <i class="fa-solid fa-plus-circle"></i> Agregar Persona
-          </button>
-          <button
-            type="button"
-            onclick="window.location.href='index.html'"
-            class="back-button"
-          >
-            <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
-          </button>
-        </div>
-      </form>
-
-      <h2>Lista de Personas Registradas</h2>
-      <div class="table-container">
+    <h2>Lista de Personas Registradas</h2>
+    <div class="table-container">
+      <table>
         <table>
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre Completo</th>
-                <th>Acciones</th> </tr>
-            </thead>
-            <tbody id="lista-personas"></tbody>
-          </table>
-      </div>
-    </main>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre Completo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="lista-personas"></tbody>
+        </table>
+    </div>
 
-    <script src="modulos/logout.js"></script>
-    <script type="module" src="modulos/personasApp.js"></script>
-    <footer class="main-footer">
-      <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
-      <p>
-        Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander
-        Ubeda"
-      </p>
-    </footer>
-  </body>
+
+    <div class="btn-volver">
+      <button onclick="window.location.href='index.html'" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
+      </button>
+    </div>
+
+
+  </main>
+
+  <script src="modulos/logout.js"></script>
+  <script type="module" src="modulos/personasApp.js"></script>
+  <footer class="main-footer">
+    <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+    <p>
+      Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander
+      Ubeda"
+    </p>
+  </footer>
+</body>
+
 </html>
