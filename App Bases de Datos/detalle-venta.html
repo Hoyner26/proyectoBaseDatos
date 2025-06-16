@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle de Venta - Frutas y Verduras Cenada</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/detalle-venta.css" />
+    <link rel="icon" href="logo.ico" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-content">
+        <img src="logo.png" class="header-logo" alt="Logo del sitio" />
+        <h1>Detalle de Venta</h1>
+      </div>
+      <button id="logout-button" class="logout-button">
+        <i class="fa-solid fa-lock"></i> Cerrar Sesión
+      </button>
+    </header>
+
+    <main class="main-content">
+      <section id="venta-info" class="details-card">
+        <p><strong>Fecha:</strong> <span id="venta-fecha"></span></p>
+        <p><strong>Cliente:</strong> <span id="venta-cliente"></span></p>
+        <p><strong>Empleado:</strong> <span id="venta-empleado"></span></p>
+        <p><strong>Tipo de Pago:</strong> <span id="venta-tipo-pago"></span></p>
+        <p>
+          <strong>Estado de Pago:</strong> <span id="venta-estado-pago"></span>
+        </p>
+        <p><strong>Total:</strong> ₡<span id="venta-total"></span></p>
+      </section>
+
+      <section>
+        <h3>Productos:</h3>
+        <table class="products-table">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Unidad</th>
+              <th>Tipo</th>
+              <th>Precio Unitario</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody id="productos-tbody"></tbody>
+        </table>
+      </section>
+
+      <div class="form-buttons">
+        <button onclick="window.history.back()" class="back-button">
+          <i class="fa-solid fa-arrow-left"></i> Volver
+        </button>
+      </div>
+    </main>
+
+    <script src="modulos/logout.js"></script>
+    <script type="module" src="modulos/detalleVentaApp.js"></script>
+  </body>
+</html>
