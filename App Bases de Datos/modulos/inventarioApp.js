@@ -31,12 +31,17 @@ async function cargarInventarios() {
       <td>${inventario.nombre}</td>
       <td>${inventario.cantidad}</td>
       <td>${inventario.fecha_ingreso}</td>
-      <td><button class="btn-eliminar" data-id="${inventario.id_producto}">Eliminar</button></td>
+      <td>
+  <button class="accion-btn ver-btn" data-id="${inventario.id_producto}"><i class="fa-solid fa-eye"></i></button>
+  <button class="accion-btn editar-btn" data-id="${inventario.id_producto}"><i class="fa-solid fa-edit"></i></button>
+  <button class="accion-btn eliminar-btn" data-id="${inventario.id_producto}"><i class="fa-solid fa-trash-can"></i></button>
+</td>
     `;
     lista.appendChild(fila);
   });
 
   document.querySelectorAll('.btn-eliminar').forEach(boton => {
+    
     boton.addEventListener('click', async () => {
       const id = boton.dataset.id;
       if (confirm(`¿Seguro que desea eliminar el producto con ID ${id}?`)) {
@@ -44,7 +49,18 @@ async function cargarInventarios() {
         cargarInventarios();
       }
     });
+    
   });
+
+  document.querySelectorAll('.eliminar-btn').forEach(boton => {
+  boton.addEventListener('click', async () => {
+    const id = boton.dataset.id;
+    if (confirm(`¿Seguro que desea eliminar el inventario con ID de producto ${id}?`)) {
+      await eliminarInventario(parseInt(id));
+      cargarInventarios();
+    }
+  });
+});
 }
 
 // ✅ Solo esta línea para esperar al DOM
