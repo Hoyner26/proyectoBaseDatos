@@ -77,18 +77,19 @@ async function cargarFacturas() {
     
 }
 
-async function cargarEmpleadosSelect() {
+async function cargarEmpleados() {
     const empleados = await obtenerEmpleados();
     const selectEmpleado = document.getElementById('empleado_id');
-    empleados.forEach(empleado => {
+    empleados.forEach(async empleado => {
         const option = document.createElement('option');
         option.value = empleado.id_empleado;
-        option.textContent = `ID_Empleado: ${empleado.id_empleado}`;
+        const persona = await obtenerPersonaPorId(empleado.id_persona);
+        option.textContent = `ID: ${empleado.id_empleado} - Nombre: ${persona.nombre} ${persona.apellido1}`;
         selectEmpleado.appendChild(option);
     });
 }
 
-async function cargarPedidosSelect() {
+async function cargarPedidos() {
     const pedidos = await obtenerPedidos();
     const selectPedido = document.getElementById('pedido_id');
     pedidos.forEach(pedido => {
@@ -140,7 +141,6 @@ async function alIniciar() {
 }
 
 // ✅ Solo esta línea para esperar al DOM
-document.addEventListener("DOMContentLoaded", cargarPedidosSelect);
 document.addEventListener('DOMContentLoaded', cargarFacturas);
 document.addEventListener('DOMContentLoaded', cargarEmpleados);
 document.addEventListener('DOMContentLoaded', cargarPedidos);
