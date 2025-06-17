@@ -95,3 +95,15 @@ export async function eliminarVentaPorId(id) {
     throw new Error("No se pudo eliminar la venta.");
   }
 }
+
+export async function obtenerVentaPorId(id) {
+  const { data, error } = await supabase.from('venta').select('*')
+    .eq("id_venta", id)
+    .single();
+
+  if (error) {
+    console.error(`Error obteniendo la venta con ID ${id}:`, error.message);
+    return null;
+  }
+  return data;
+}

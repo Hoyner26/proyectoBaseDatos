@@ -1,39 +1,47 @@
 import {obtenerFacturas, agregarFactura, eliminarFactura, obtenerFacturaPorId, actualizarFactura} from './facturas.js';
 import {obtenerEmpleados} from './empleados.js';
 import {obtenerPersonaPorId} from './personas.js';
-import {obtenerPedidos} from './pedido.js';
+import {obtenerPedidos,obtenerPedidoPorId} from './pedido.js';
+import {obtenerVentaPorId} from './ventas.js';
 
-const form = document.getElementById('form-factura');
+const form = document.getElementById('factura-form');
 
 form?.addEventListener('submit', async (event) => {
     event.preventDefault();
-    
-    const formData = new FormData(form);
-    const factura = {
-        id_pedido: formData.get('pedido_id'),
-        id_empleado: formData.get('empleado_id'),
-        moneda: formData.get('moneda'),
-        estado_pago: formData.get('estado_pago'),
-        total_pago: parseFloat(formData.get('total')),
-        fecha_emision: formData.get('fecha_emision')
-    };
-
-    if (factura.id_factura) {
-        await actualizarFactura(factura.id_factura, factura);
-    } else {
+    const selectPedido = document.getElementById('pedido_id').value;
+    const pedido = await obtenerPedidoPorId(selectPedido);
+    if(pedido.cantidad_faltante == 0) {
+        const tal = await obtenerVentaPorId(pedido.id_venta);
+        const factura = {
+        id_pedido: parseInt(document.getElementById('pedido_id').value),
+        id_empleado: parseInt(document.getElementById('empleado_id').value),
+        moneda: 'Colones',
+        estado_pago: 'Completado',
+        total_pago: tal.total,
+        fecha_emision: document.getElementById('fecha_emision').value
+        };
         await agregarFactura(factura);
+        form.reset();
+        cargarFacturas();
+        alIniciar();
     }
-
-    form.reset();
-    cargarFacturas();
+    else{
+        const factura = {
+        id_pedido: parseInt(document.getElementById('pedido_id').value),
+        id_empleado: parseInt(document.getElementById('empleado_id').value),
+        moneda: document.getElementById('moneda_id').value,
+        estado_pago: document.getElementById('estado_pago_id').value,
+        total_pago: parseInt(document.getElementById('total').value),
+        fecha_emision: document.getElementById('fecha_emision').value
+        };
+        await agregarFactura(factura);
+        form.reset();
+        cargarFacturas();
+        alIniciar();
+    }
 });
 
-async function prueba() {
-    const lista = document.getElementById('facturas-list');
-    const fila = document.createElement('tr');
-    fila.innerHTML='<td>mmm</td>';
-    lista.appendChild(fila);
-}
+
 
 async function cargarFacturas() {
     const facturas = await obtenerFacturas();
@@ -104,14 +112,55 @@ async function cargarPedidos() {
     pedidos.forEach(pedido => {
         const option = document.createElement('option');
         option.value = pedido.id_pedido;
-        option.textContent = `Pedido: ${pedido.id_pedido} - Fecha: ${pedido.fechahora}`;
+        option.textContent = `Pedido: ${pedido.id_pedido} - Estado: ${(pedido.cantidad_faltante==0) ? "Completado" : "Pendiente"}`;
         selectPedido.appendChild(option);
     });
+}
+
+async function siCompletado() {
+    const selectPedido = document.getElementById('pedido_id').value;
+    const pedido = await obtenerPedidoPorId(selectPedido);
+    if(pedido.cantidad_faltante == 0) {
+        const estadoPago = document.getElementById('estado_pago_id');
+        estadoPago.style.display = 'none';
+        estadoPago.disabled = true;
+        const moneda = document.getElementById('moneda_id');
+        moneda.style.display = 'none';
+        moneda.disabled = true;
+        const totalPago = document.getElementById('total');
+        totalPago.style.display = 'none';
+        totalPago.disabled = true;
+    }
+    else {
+        const estadoPago = document.getElementById('estado_pago_id');
+        estadoPago.style.display = '';
+        estadoPago.disabled = false;
+        const moneda = document.getElementById('moneda_id');
+        moneda.style.display = '';
+        moneda.disabled = false;
+        const totalPago = document.getElementById('total');
+        totalPago.style.display = '';
+        totalPago.disabled = false;
+    }
+}
+
+async function alIniciar() {
+    const estadoPago = document.getElementById('estado_pago_id');
+    estadoPago.style.display = 'none';
+    estadoPago.disabled = true;
+    const moneda = document.getElementById('moneda_id');
+    moneda.style.display = 'none';
+    moneda.disabled = true;
+    const totalPago = document.getElementById('total');
+    totalPago.style.display = 'none';
+    totalPago.disabled = true;
 }
 
 // ✅ Solo esta línea para esperar al DOM
 document.addEventListener('DOMContentLoaded', cargarFacturas);
 document.addEventListener('DOMContentLoaded', cargarEmpleados);
-document.addEventListener('DOMContentLoaded', prueba);
 document.addEventListener('DOMContentLoaded', cargarPedidos);
+document.addEventListener('DOMContentLoaded', alIniciar);
+document.getElementById('pedido_id').addEventListener('change', siCompletado);
+
 
