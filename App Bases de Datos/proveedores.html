@@ -66,7 +66,10 @@
       <input type="text" id="razonSocial" placeholder="Razon Social" required />
       <input type="text" id="telefono" placeholder="Teléfono" />
       <input type="email" id="correo_electronico" placeholder="Correo electrónico" />
-      <select id="provincia-select" class="select-verde" required></select>
+      
+        <select id="provincia-select" class="select-verde" required>
+          <option value="" disabled selected>Seleccione Provincia</option>
+        </select>
 
         <select id="canton" class="select-verde" required disabled>
           <option value="" disabled selected>Seleccione Cantón</option>
@@ -109,6 +112,7 @@
   </div>
   <br>
   <br>
+
 
   <footer class="main-footer">
     <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>

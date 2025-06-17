@@ -1,5 +1,5 @@
 import { obtenerProveedores, agregarProveedor, eliminarProveedorPorId } from './proveedores.js';
-
+import { supabase } from './supabaseClient.js';
 const form = document.getElementById("proveedor-form");
 
 form?.addEventListener("submit", async (e) => {
@@ -11,7 +11,9 @@ form?.addEventListener("submit", async (e) => {
     razon_social: form.razonSocial.value.trim(),
     telefono: form.telefono.value.trim(),
     correo_electronico: form.correo_electronico.value.trim(),
-    direccion: form.direccion.value.trim()
+    direccion: `${document.getElementById('distrito').selectedOptions[0].textContent}, ${document.getElementById('canton').selectedOptions[0].textContent}, ${document.getElementById('provincia-select').selectedOptions[0].textContent}`
+
+
   };
 
   // Validación: evitar duplicados por ID
@@ -59,7 +61,7 @@ async function cargarProveedores() {
     });
   });
 
-  
+
 }
 
 async function cargarProvincias() {
@@ -69,17 +71,72 @@ async function cargarProvincias() {
     return;
   }
 
-  const select = document.getElementById('provincia-select');
-  select.innerHTML = '<option value="">Seleccione Provincia</option>';
+  const selectProvincia = document.getElementById('provincia-select');
+  selectProvincia.innerHTML = '<option value="">Seleccione Provincia</option>';
+
   data.forEach(prov => {
     const option = document.createElement('option');
     option.value = prov.id_provincia;
     option.textContent = prov.provincia;
-    select.appendChild(option);
+    selectProvincia.appendChild(option);
   });
+
+  // Habilitar cantones cuando se seleccione una provincia
+  selectProvincia.addEventListener('change', async (e) => {
+    const idProvincia = e.target.value;
+    await cargarCantones(idProvincia);
+    document.getElementById('canton').disabled = false;
+    document.getElementById('distrito').innerHTML = '<option value="">Seleccione Distrito</option>';
+    document.getElementById('distrito').disabled = true;
+  });
+}
+
+async function cargarCantones(idProvincia) {
+  const { data, error } = await supabase
+    .from('cantones')
+    .select('*')
+    .eq('id_provincia', idProvincia);
+
+  const selectCanton = document.getElementById('canton');
+  selectCanton.innerHTML = '<option value="">Seleccione Cantón</option>';
+
+  if (data) {
+    data.forEach(canton => {
+      const option = document.createElement('option');
+      option.value = canton.id_canton;
+      option.textContent = canton.canton;
+      selectCanton.appendChild(option);
+    });
+
+    // Activar evento al cambiar el cantón
+    selectCanton.addEventListener('change', async (e) => {
+      const idCanton = e.target.value;
+      await cargarDistritos(idCanton);
+      document.getElementById('distrito').disabled = false;
+    });
+  }
+}
+
+async function cargarDistritos(idCanton) {
+  const { data, error } = await supabase
+    .from('distritos')
+    .select('*')
+    .eq('id_canton', idCanton);
+
+  const selectDistrito = document.getElementById('distrito');
+  selectDistrito.innerHTML = '<option value="">Seleccione Distrito</option>';
+
+  if (data) {
+    data.forEach(distrito => {
+      const option = document.createElement('option');
+      option.value = distrito.id_distrito;
+      option.textContent = distrito.distrito;
+      selectDistrito.appendChild(option);
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   cargarProvincias();
+  cargarProveedores(); // si ya lo tenés, dejalo como está
 });
-document.addEventListener("DOMContentLoaded", cargarProveedores);
