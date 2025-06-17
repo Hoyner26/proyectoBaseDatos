@@ -61,7 +61,8 @@ async function cargarFacturas() {
             <td>
                 
                 <button class="accion-btn eliminar-btn" data-id="${factura.id_factura}"><i class="fa-solid fa-trash-can"></i></button>
-            </td>
+                <button class="accion-btn ver-btn" data-id="${factura.id_factura}"><i class="fa-solid fa-eye"></i></button>
+                </td>
         `;
         lista.appendChild(fila);
     });
@@ -71,6 +72,13 @@ async function cargarFacturas() {
             const id = boton.getAttribute('data-id');
             await eliminarFactura(id);
             cargarFacturas();
+        });
+    });
+    document.querySelectorAll('.ver-btn').forEach(boton => {
+        boton.addEventListener('click', async () => {
+            const id = boton.getAttribute('data-id');
+            const factura = await obtenerFacturaPorId(id);
+            alert(`Factura ID: ${factura.id_factura}\nPedido ID: ${factura.id_pedido}\nEmpleado ID: ${factura.id_empleado}\nMoneda: ${factura.moneda}\nEstado de Pago: ${factura.estado_pago}\nTotal a Pagar: ₡${factura.total_pago.toFixed(2)}\nFecha de Emisión: ${factura.fecha_emision}`);
         });
     });
 
