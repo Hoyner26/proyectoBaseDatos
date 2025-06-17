@@ -135,3 +135,35 @@ export async function eliminarPersonaPorId(id) {
   }
 }
 
+export async function obtenerPersonaPorId(id) {
+  const { data, error } = await supabase
+    .from("persona")
+    .select(`
+      id_persona,
+      nombre,
+      apellido1,
+      apellido2,
+      genero,
+      distrito,
+      senas,
+      telefonos_personas (
+        telefono
+      ),
+      correos_personas (
+        correo_electronico
+      )
+    `)
+    .eq("id_persona", id)
+    .single();
+
+  if (error) {
+    console.error("Error obteniendo persona por ID:", error);
+    return null;
+  }
+
+  return {
+    ...data,
+    telefonos: data.telefonos_personas.map((t) => t.telefono),
+    correos: data.correos_personas.map((c) => c.correo_electronico),
+  };
+}
