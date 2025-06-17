@@ -32,8 +32,7 @@ async function cargarInventarios() {
       <td>${inventario.cantidad}</td>
       <td>${inventario.fecha_ingreso}</td>
       <td>
-  <button class="accion-btn ver-btn" data-id="${inventario.id_producto}"><i class="fa-solid fa-eye"></i></button>
-  <button class="accion-btn editar-btn" data-id="${inventario.id_producto}"><i class="fa-solid fa-edit"></i></button>
+  
   <button class="accion-btn eliminar-btn" data-id="${inventario.id_producto}"><i class="fa-solid fa-trash-can"></i></button>
 </td>
     `;

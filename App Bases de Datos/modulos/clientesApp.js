@@ -62,8 +62,7 @@ async function cargarClientes() {
     <td>${cliente.estado_pago_preferido}</td>
     <td>₡${cliente.limite_credito}</td>
     <td>
-      <button class="accion-btn ver-btn" data-id="${cliente.id_cliente}"><i class="fa-solid fa-eye"></i></button>
-      <button class="accion-btn editar-btn" data-id="${cliente.id_cliente}"><i class="fa-solid fa-edit"></i></button>
+      
       <button class="accion-btn eliminar-btn" data-id="${cliente.id_cliente}"><i class="fa-solid fa-trash-can"></i></button>
     </td>
   `;

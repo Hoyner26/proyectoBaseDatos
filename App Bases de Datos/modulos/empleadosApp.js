@@ -49,8 +49,7 @@ async function cargarEmpleados() {
   <td>₡${empleado.salario}</td>
   <td>${empleado.cargo}</td>
   <td>
-    <button class="accion-btn ver-btn"><i class="fa-solid fa-eye"></i></button>
-    <button class="accion-btn editar-btn" data-id="${empleado.id_empleado}"><i class="fa-solid fa-edit"></i></button>
+    
     <button class="accion-btn eliminar-btn" data-id="${empleado.id_empleado}"><i class="fa-solid fa-trash-can"></i></button>
   </td>
 `;

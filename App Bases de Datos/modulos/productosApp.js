@@ -50,8 +50,7 @@ async function cargarProductos() {
   <td>${producto.unidad_medida}</td>
   <td>${producto.tipo_producto}</td>
   <td>
-    <button class="accion-btn ver-btn"><i class="fa-solid fa-eye"></i></button>
-    <button class="accion-btn editar-btn" data-id="${producto.id_producto}"><i class="fa-solid fa-edit"></i></button>
+    
     <button class="accion-btn eliminar-btn" data-id="${producto.id_producto}"><i class="fa-solid fa-trash-can"></i></button>
   </td>
 `;
