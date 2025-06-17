@@ -7,125 +7,114 @@
   <link rel="stylesheet" href="styles/style.css" />
   <link rel="stylesheet" href="styles/cliente.css" />
   <link rel="icon" href="logo.ico">
-  <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <header class="main-header">
-      <div class="header-content">
-        <img src="logo.png" alt="Logo del sitio" class="header-logo" />
-        <h1>Gestión de facturas</h1>
-      </div>
-      <button id="logout-button" class="logout-button">
-        <i class="fa-solid fa-lock"></i> Cerrar Sesión
-      </button>
-    </header>
-    <nav class="main-nav">
-      <ul>
-        <li>
-          <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-        </li>
-        <li>
-          <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
-        </li>
-        <li>
-          <a href="productos.html"
-            ><i class="fa-solid fa-basket-shopping"></i> Productos</a
-          >
-        </li>
-        <li>
-          <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
-        </li>
-        <li>
-          <a href="empleados.html"
-            ><i class="fa-solid fa-user-tie"></i> Empleados</a
-          >
-        </li>
-        <li>
-          <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
-        </li>
-        <li>
-          <a href="facturas.html"
-            ><i class="fa-solid fa-file-invoice"></i> Facturas</a
-          >
-        </li>
-        <li>
-          <a href="proveedores.html"
-            ><i class="fa-solid fa-truck"></i> Proveedores</a
-          >
-        </li>
-        <li>
-          <a href="inventario.html"
-            ><i class="fa-solid fa-boxes-stacked"></i> Inventario</a
-          >
-        </li>
-      </ul>
-    </nav>
-    <main class="main-content">
-      <h2>Registro de Nueva Factura</h2>
-      <form id="factura-form" class="factura-form">
-        <div class="form-grid">
-          <select id="empleado_id" required>
-            <option value="" disabled selected>Seleccione ID del empleado</option>
-            <!-- Aquí se llenarán los ID de clientes con JS -->
-            </select>
-            <input type="date" id="fecha_emision" placeholder="Fecha de Emisión" required />
-            <select id="pedido_id" required>
-            <option value="" disabled selected>Seleccione ID del Pedido</option>
-            <!-- Aquí se llenarán los ID de pedidos con JS -->
-            </select>
-            <select id="moneda_id"  required>
-            <option value="" disabled selected>Seleccione Moneda</option>
-            <option value="1">Colones</option>
-            <option value="2">Dólares</option>
-            <option value="3">Euros</option>
-            </select>
-            <select id="estado_pago_id" required>
-            <option value="" disabled selected>Seleccione Estado de Pago</option>
-            <option value="1">Completado</option>
-            <option value="2">Pendiente</option>
-            <option value="3">Cancelado</option>
-            </select>
-            <input type="number" id="total" placeholder="Total de la Factura" required />
-        </div>
-        <button type="submit">Registrar Factura</button>
-      </form>
-        <h2>Lista de Facturas</h2>
-        <table id="facturas-table" class="facturas-table">  
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Empleado ID</th>
-              <th>Fecha de Emisión</th>
-              <th>Pedido ID</th>
-              <th>Moneda ID</th>
-              <th>Estado de Pago</th>
-              <th>Total</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="facturas-list">
-            <!-- Aquí se llenarán las facturas con JS -->
-          </tbody>
-          </table>
-    </main>
-    <br>
-    <br>
-    <div class="btn-volver">
-      <button onclick="window.location.href='index.html'" class="back-button">
-        <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
-      </button>
+  <header class="main-header">
+    <div class="header-content">
+      <img src="logo.png" alt="Logo del sitio" class="header-logo" />
+      <h1>Gestión de facturas</h1>
     </div>
+    <button id="logout-button" class="logout-button">
+      <i class="fa-solid fa-lock"></i> Cerrar Sesión
+    </button>
+  </header>
+  <nav class="main-nav">
+    <ul>
+      <li>
+        <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      </li>
+      <li>
+        <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
+      </li>
+      <li>
+        <a href="productos.html"><i class="fa-solid fa-basket-shopping"></i> Productos</a>
+      </li>
+      <li>
+        <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
+      </li>
+      <li>
+        <a href="empleados.html"><i class="fa-solid fa-user-tie"></i> Empleados</a>
+      </li>
+      <li>
+        <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
+      </li>
+      <li>
+        <a href="facturas.html"><i class="fa-solid fa-file-invoice"></i> Facturas</a>
+      </li>
+      <li>
+        <a href="proveedores.html"><i class="fa-solid fa-truck"></i> Proveedores</a>
+      </li>
+      <li>
+        <a href="inventario.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a>
+      </li>
+    </ul>
+  </nav>
+  <main class="main-content">
+    <h2>Registro de Nueva Factura</h2>
+    <form id="factura-form" class="factura-form">
+
+      <div class="form-grid">
+        <input type="hidden" id="id_factura" name="id_factura" />
+
+        <select id="empleado_id" required>
+          <option value="">Seleccione ID: Empleado</option>
+          <!-- Aquí se llenarán los ID de clientes con JS -->
+        </select>
+        <div class="campo-formulario">
+          <label for="fecha_emision" class="form-label">Fecha de Emisión</label>
+          <input type="date" id="fecha_emision" name="fecha_emision" required />
+        </div>
+        <select id="pedido_id" required>
+          <option value="">Seleccione ID del Pedido</option>
+          <!-- Aquí se llenarán los ID de pedidos con JS -->
+        </select>
+        <select id="moneda_id" required>
+          <option value="" disabled selected>Seleccione Moneda</option>
+          <option value="1">Colones</option>
+          <option value="2">Dólares</option>
+          <option value="3">Euros</option>
+        </select>
+        <select id="estado_pago_id" required>
+          <option value="" disabled selected>Seleccione Estado de Pago</option>
+          <option value="1">Completado</option>
+          <option value="2">Pendiente</option>
+          <option value="3">Cancelado</option>
+        </select>
+        <input type="number" id="total" placeholder="Total de la Factura" required />
+      </div>
+      <button type="submit">Registrar Factura</button>
+    </form>
+    <h2>Lista de Facturas</h2>
+    <table id="facturas-table" class="facturas-table">
+      <thead>
+        <tr>
+          <th>ID_Factura</th>
+          <th>ID_Pedido</th>
+          <th>ID_Empleado</th>
+          <th>Moneda</th>
+          <th>Estado de Pago</th>
+          <th>Total</th>
+          <th>Fecha de Emisión</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="facturas-list">
+        <!-- Aquí se llenarán las facturas con JS -->
+      </tbody>
+    </table>
+  </main>
+  <br>
+  <br>
+  <div class="btn-volver">
+    <button onclick="window.location.href='index.html'" class="back-button">
+      <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
+    </button>
+  </div>
   <footer class="main-footer">
     <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
     <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
@@ -133,5 +122,5 @@
   </footer>
   <script type="module" src="./modulos/facturasApp.js"></script>
 </body>
-</html>
 
+</html>

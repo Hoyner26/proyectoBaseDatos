@@ -42,8 +42,7 @@ async function cargarProveedores() {
       <td>${p.correo_electronico}</td>
       <td>${p.direccion}</td>
       <td>
-        <button class="accion-btn ver-btn" data-id="${p.id_proveedor}"><i class="fa-solid fa-eye"></i></button>
-        <button class="accion-btn editar-btn" data-id="${p.id_proveedor}"><i class="fa-solid fa-edit"></i></button>
+        
         <button class="accion-btn eliminar-btn" data-id="${p.id_proveedor}"><i class="fa-solid fa-trash-can"></i></button>
       </td>
     `;
