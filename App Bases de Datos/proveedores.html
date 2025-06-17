@@ -66,7 +66,20 @@
       <input type="text" id="razonSocial" placeholder="Razon Social" required />
       <input type="text" id="telefono" placeholder="Teléfono" />
       <input type="email" id="correo_electronico" placeholder="Correo electrónico" />
-      <input type="text" id="direccion" placeholder="Dirección general" />
+      
+        <select id="provincia" class="select-verde" required>
+          <option value="" disabled selected>Seleccione Provincia</option>
+        </select>
+
+        <select id="canton" class="select-verde" required disabled>
+          <option value="" disabled selected>Seleccione Cantón</option>
+        </select>
+
+        <select id="distrito" class="select-verde" required disabled>
+          <option value="" disabled selected>Seleccione Distrito</option>
+        </select>
+        <br>
+        <br>
       <button type="submit">Agregar Proveedor</button>
     </form>
 
