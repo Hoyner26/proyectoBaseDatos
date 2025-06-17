@@ -61,59 +61,25 @@ async function cargarProveedores() {
 
   
 }
+
 async function cargarProvincias() {
-  const { data } = await supabase.from("provincias").select("*");
-  const select = document.getElementById("provincia");
-  select.innerHTML =
-    '<option value="" disabled selected>Seleccione Provincia</option>';
-  data.forEach((p) => {
-    const option = document.createElement("option");
-    option.value = p.id_provincia;
-    option.textContent = p.provincia;
+  const { data, error } = await supabase.from('provincias').select('*');
+  if (error) {
+    console.error('Error al cargar provincias:', error);
+    return;
+  }
+
+  const select = document.getElementById('provincia-select');
+  select.innerHTML = '<option value="">Seleccione Provincia</option>';
+  data.forEach(prov => {
+    const option = document.createElement('option');
+    option.value = prov.id_provincia;
+    option.textContent = prov.provincia;
     select.appendChild(option);
   });
 }
 
-document.getElementById("provincia").addEventListener("change", async (e) => {
-  const idProvincia = e.target.value;
-  const { data } = await supabase
-    .from("cantones")
-    .select("*")
-    .eq("id_provincia", idProvincia);
-  const selectCanton = document.getElementById("canton");
-  selectCanton.innerHTML =
-    "<option disabled selected>Seleccione Cantón</option>";
-  selectCanton.disabled = false;
-  document.getElementById("distrito").disabled = true;
-  document.getElementById("distrito").innerHTML =
-    "<option disabled selected>Seleccione Distrito</option>";
-  data.forEach((c) => {
-    const option = document.createElement("option");
-    option.value = c.id_canton;
-    option.textContent = c.canton;
-    selectCanton.appendChild(option);
-  });
-});
-
-document.getElementById("canton").addEventListener("change", async (e) => {
-  const idCanton = e.target.value;
-  const { data } = await supabase
-    .from("distritos")
-    .select("*")
-    .eq("id_canton", idCanton);
-  const selectDistrito = document.getElementById("distrito");
-  selectDistrito.innerHTML =
-    "<option disabled selected>Seleccione Distrito</option>";
-  selectDistrito.disabled = false;
-  data.forEach((d) => {
-    const option = document.createElement("option");
-    option.value = d.id_distrito;
-    option.textContent = d.distrito;
-    selectDistrito.appendChild(option);
-  });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  cargarProveedores();
+document.addEventListener('DOMContentLoaded', () => {
   cargarProvincias();
 });
+document.addEventListener("DOMContentLoaded", cargarProveedores);
