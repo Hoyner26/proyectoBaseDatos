@@ -81,11 +81,13 @@ async function cargarEmpleados() {
     const empleados = await obtenerEmpleados();
     const selectEmpleado = document.getElementById('empleado_id');
     empleados.forEach(async empleado => {
-        const option = document.createElement('option');
-        option.value = empleado.id_empleado;
-        const persona = await obtenerPersonaPorId(empleado.id_persona);
-        option.textContent = `ID: ${empleado.id_empleado} - Nombre: ${persona.nombre} ${persona.apellido1}`;
-        selectEmpleado.appendChild(option);
+        if(empleado.cargo=='Cajero'){
+            const option = document.createElement('option');
+            option.value = empleado.id_empleado;
+            const persona = await obtenerPersonaPorId(empleado.id_persona);
+            option.textContent = `ID: ${empleado.id_empleado} - Nombre: ${persona.nombre} ${persona.apellido1} ${persona.apellido2}`;
+            selectEmpleado.appendChild(option);
+        }
     });
 }
 
