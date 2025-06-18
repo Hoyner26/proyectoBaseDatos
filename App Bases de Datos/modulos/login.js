@@ -162,6 +162,7 @@ async function handleFormSubmit(e) {
 
       showMessage(
         "¡Registro exitoso! Revisa tu correo para confirmar la cuenta.",
+        "Rivise la sección de spam si no ves el correo.",
         "success"
       );
 
