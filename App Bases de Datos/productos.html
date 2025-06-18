@@ -67,8 +67,21 @@
       <input type="text" id="nombre" placeholder="Nombre del producto" required />
       <input type="text" id="descripcion" placeholder="Descripción" />
       <input type="number" id="precio" placeholder="Precio ₡" step="0.01" required />
-      <input type="text" id="unidad" placeholder="Unidad (kg, und, etc)" required />
-      <input type="text" id="tipo" placeholder="Tipo de producto" />
+      <select name="unidad" id="unidad">
+        <option value="" disabled selected>Seleccione Unidad</option>
+        <option value="und">Unidades</option>
+        <option value="kg">Kilogramos</option>
+        <option value="l">Litros</option>
+      </select>
+      <select name="tipo" id="tipo">
+        <option value="" disabled selected>Seleccione Tipo de Producto</option>
+        <option value="fruta">Fruta</option>
+        <option value="verdura">Verdura</option>
+        <option value="otro">Otro</option>
+
+
+      </select>
+      
       <button type="submit">Agregar Producto</button>
     </form>
 
