@@ -14,104 +14,97 @@
 </head>
 
 <body>
-    <header class="main-header">
-      <div class="header-content">
-        <img src="logo.png" alt="Logo del sitio" class="header-logo" />
-        <h1>Gestión de facturas</h1>
-      </div>
-      <button id="logout-button" class="logout-button">
-        <i class="fa-solid fa-lock"></i> Cerrar Sesión
-      </button>
-    </header>
-    <nav class="main-nav">
-      <ul>
-        <li>
-          <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-        </li>
-        <li>
-          <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
-        </li>
-        <li>
-          <a href="productos.html"
-            ><i class="fa-solid fa-basket-shopping"></i> Productos</a
-          >
-        </li>
-        <li>
-          <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
-        </li>
-        <li>
-          <a href="empleados.html"
-            ><i class="fa-solid fa-user-tie"></i> Empleados</a
-          >
-        </li>
-        <li>
-          <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
-        </li>
-        <li>
-          <a href="facturas.html"
-            ><i class="fa-solid fa-file-invoice"></i> Facturas</a
-          >
-        </li>
-        <li>
-          <a href="proveedores.html"
-            ><i class="fa-solid fa-truck"></i> Proveedores</a
-          >
-        </li>
-        <li>
-          <a href="inventario.html"
-            ><i class="fa-solid fa-boxes-stacked"></i> Inventario</a
-          >
-        </li>
-      </ul>
-    </nav>
-    <main class="main-content">
-      <h2>Registro de Nueva Factura</h2>
-      <form id="factura-form" class="factura-form">
-        <div class="form-grid">
-          <select id="empleado_id" required>
-            <option value="" disabled selected>Seleccione ID del empleado</option>
-            <!-- Aquí se llenarán los ID de clientes con JS -->
-            </select>
-            <input type="date" id="fecha_emision" placeholder="Fecha de Emisión" required />
-            <select id="pedido_id" required>
-            <option value="" disabled selected>Seleccione ID del Pedido</option>
-            <!-- Aquí se llenarán los ID de pedidos con JS -->
-            </select>
-            <select id="moneda_id"  required>
-            <option value="" disabled selected>Seleccione Moneda</option>
-            <option value="Colones">Colones</option>
-            <option value="Dólares">Dólares</option>
-            <option value="Euros">Euros</option>
-            </select>
-            <select id="estado_pago_id" required>
-            <option value="" disabled selected>Seleccione Estado de Pago</option>
-            <option value="Completado">Completado</option>
-            <option value="Pendiente">Pendiente</option>
-            <option value="Cancelado">Cancelado</option>
-            </select>
-            <input type="number" id="total" placeholder="Total de la Factura" required />
+  <header class="main-header">
+    <div class="header-content">
+      <img src="logo.png" alt="Logo del sitio" class="header-logo" />
+      <h1>Gestión de facturas</h1>
+    </div>
+    <button id="logout-button" class="logout-button">
+      <i class="fa-solid fa-lock"></i> Cerrar Sesión
+    </button>
+  </header>
+  <nav class="main-nav">
+    <ul>
+      <li>
+        <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+      </li>
+      <li>
+        <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
+      </li>
+      <li>
+        <a href="productos.html"><i class="fa-solid fa-basket-shopping"></i> Productos</a>
+      </li>
+      <li>
+        <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
+      </li>
+      <li>
+        <a href="empleados.html"><i class="fa-solid fa-user-tie"></i> Empleados</a>
+      </li>
+      <li>
+        <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
+      </li>
+      <li>
+        <a href="facturas.html"><i class="fa-solid fa-file-invoice"></i> Facturas</a>
+      </li>
+      <li>
+        <a href="proveedores.html"><i class="fa-solid fa-truck"></i> Proveedores</a>
+      </li>
+      <li>
+        <a href="inventario.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a>
+      </li>
+    </ul>
+  </nav>
+  <main class="main-content">
+    <h2>Registro de Nueva Factura</h2>
+    <form id="factura-form" class="factura-form">
+      <div class="form-grid">
+        <select id="empleado_id" required>
+          <option value="" disabled selected>Seleccione ID del empleado</option>
+          <!-- Aquí se llenarán los ID de clientes con JS -->
+        </select>
+        <div class="form-row">
+          <label class="form-label">Fecha de Emisión</label>
+          <input type="date" id="fechaInput" required />
         </div>
-        <button type="submit">Registrar Factura</button>
-      </form>
-        <h2>Lista de Facturas</h2>
-        <table id="facturas-table" class="facturas-table">  
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Pedido ID</th>
-              <th>Empleado ID</th> 
-              <th>Moneda</th>
-              <th>Estado de Pago</th>
-              <th>Total</th>
-              <th>Fecha de Emisión</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="facturas-list">
-            <!-- Aquí se llenarán las facturas con JS -->
-          </tbody>
-          </table>
-    </main>
+        <select id="pedido_id" required>
+          <option value="" disabled selected>Seleccione ID del Pedido</option>
+          <!-- Aquí se llenarán los ID de pedidos con JS -->
+        </select>
+        <select id="moneda_id" required>
+          <option value="" disabled selected>Seleccione Moneda</option>
+          <option value="Colones">Colones</option>
+          <option value="Dólares">Dólares</option>
+          <option value="Euros">Euros</option>
+        </select>
+        <select id="estado_pago_id" required>
+          <option value="" disabled selected>Seleccione Estado de Pago</option>
+          <option value="Completado">Completado</option>
+          <option value="Pendiente">Pendiente</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+        <input type="number" id="total" placeholder="Total de la Factura" required />
+      </div>
+      <button type="submit">Registrar Factura</button>
+    </form>
+    <h2>Lista de Facturas</h2>
+    <table id="facturas-table" class="facturas-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Pedido ID</th>
+          <th>Empleado ID</th>
+          <th>Moneda</th>
+          <th>Estado de Pago</th>
+          <th>Total</th>
+          <th>Fecha de Emisión</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="facturas-list">
+        <!-- Aquí se llenarán las facturas con JS -->
+      </tbody>
+    </table>
+  </main>
   <br>
   <br>
   <div class="btn-volver">
