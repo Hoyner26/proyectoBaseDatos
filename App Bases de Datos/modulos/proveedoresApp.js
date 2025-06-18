@@ -1,27 +1,25 @@
-import { obtenerProveedores, agregarProveedor, eliminarProveedorPorId } from './proveedores.js';
-import { supabase } from './supabaseClient.js';
+import {
+  obtenerProveedores,
+  agregarProveedor,
+  eliminarProveedorPorId,
+} from "./proveedores.js";
+import { supabase } from "./supabaseClient.js";
 const form = document.getElementById("proveedor-form");
 
 form?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const nuevoProveedor = {
-    id_proveedor: parseInt(form.id_proveedor.value),
     nombre_proveedor: form.nombre.value.trim(),
     razon_social: form.razonSocial.value.trim(),
     telefono: form.telefono.value.trim(),
     correo_electronico: form.correo_electronico.value.trim(),
-    direccion: `${document.getElementById('distrito').selectedOptions[0].textContent}, ${document.getElementById('canton').selectedOptions[0].textContent}, ${document.getElementById('provincia-select').selectedOptions[0].textContent}`
-
-
+    direccion: `${
+      document.getElementById("distrito").selectedOptions[0].textContent
+    }, ${document.getElementById("canton").selectedOptions[0].textContent}, ${
+      document.getElementById("provincia-select").selectedOptions[0].textContent
+    }`,
   };
-
-  // Validación: evitar duplicados por ID
-  const proveedores = await obtenerProveedores();
-  if (proveedores.some(p => p.id_proveedor === nuevoProveedor.id_proveedor)) {
-    alert("⚠️ Ya existe un proveedor con ese ID.");
-    return;
-  }
 
   await agregarProveedor(nuevoProveedor);
   alert("✅ Proveedor agregado correctamente.");
@@ -34,7 +32,7 @@ async function cargarProveedores() {
   const lista = document.getElementById("lista-proveedores");
   lista.innerHTML = "";
 
-  proveedores.forEach(p => {
+  proveedores.forEach((p) => {
     const fila = document.createElement("tr");
     fila.innerHTML = `
       <td>${p.id_proveedor}</td>
@@ -51,8 +49,8 @@ async function cargarProveedores() {
     lista.appendChild(fila);
   });
 
-  document.querySelectorAll('.eliminar-btn').forEach(btn => {
-    btn.addEventListener('click', async () => {
+  document.querySelectorAll(".eliminar-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
       const id = btn.dataset.id;
       if (confirm(`¿Eliminar proveedor con ID ${id}?`)) {
         await eliminarProveedorPorId(parseInt(id));
@@ -60,75 +58,74 @@ async function cargarProveedores() {
       }
     });
   });
-
-
 }
 
 async function cargarProvincias() {
-  const { data, error } = await supabase.from('provincias').select('*');
+  const { data, error } = await supabase.from("provincias").select("*");
   if (error) {
-    console.error('Error al cargar provincias:', error);
+    console.error("Error al cargar provincias:", error);
     return;
   }
 
-  const selectProvincia = document.getElementById('provincia-select');
+  const selectProvincia = document.getElementById("provincia-select");
   selectProvincia.innerHTML = '<option value="">Seleccione Provincia</option>';
 
-  data.forEach(prov => {
-    const option = document.createElement('option');
+  data.forEach((prov) => {
+    const option = document.createElement("option");
     option.value = prov.id_provincia;
     option.textContent = prov.provincia;
     selectProvincia.appendChild(option);
   });
 
   // Habilitar cantones cuando se seleccione una provincia
-  selectProvincia.addEventListener('change', async (e) => {
+  selectProvincia.addEventListener("change", async (e) => {
     const idProvincia = e.target.value;
     await cargarCantones(idProvincia);
-    document.getElementById('canton').disabled = false;
-    document.getElementById('distrito').innerHTML = '<option value="">Seleccione Distrito</option>';
-    document.getElementById('distrito').disabled = true;
+    document.getElementById("canton").disabled = false;
+    document.getElementById("distrito").innerHTML =
+      '<option value="">Seleccione Distrito</option>';
+    document.getElementById("distrito").disabled = true;
   });
 }
 
 async function cargarCantones(idProvincia) {
   const { data, error } = await supabase
-    .from('cantones')
-    .select('*')
-    .eq('id_provincia', idProvincia);
+    .from("cantones")
+    .select("*")
+    .eq("id_provincia", idProvincia);
 
-  const selectCanton = document.getElementById('canton');
+  const selectCanton = document.getElementById("canton");
   selectCanton.innerHTML = '<option value="">Seleccione Cantón</option>';
 
   if (data) {
-    data.forEach(canton => {
-      const option = document.createElement('option');
+    data.forEach((canton) => {
+      const option = document.createElement("option");
       option.value = canton.id_canton;
       option.textContent = canton.canton;
       selectCanton.appendChild(option);
     });
 
     // Activar evento al cambiar el cantón
-    selectCanton.addEventListener('change', async (e) => {
+    selectCanton.addEventListener("change", async (e) => {
       const idCanton = e.target.value;
       await cargarDistritos(idCanton);
-      document.getElementById('distrito').disabled = false;
+      document.getElementById("distrito").disabled = false;
     });
   }
 }
 
 async function cargarDistritos(idCanton) {
   const { data, error } = await supabase
-    .from('distritos')
-    .select('*')
-    .eq('id_canton', idCanton);
+    .from("distritos")
+    .select("*")
+    .eq("id_canton", idCanton);
 
-  const selectDistrito = document.getElementById('distrito');
+  const selectDistrito = document.getElementById("distrito");
   selectDistrito.innerHTML = '<option value="">Seleccione Distrito</option>';
 
   if (data) {
-    data.forEach(distrito => {
-      const option = document.createElement('option');
+    data.forEach((distrito) => {
+      const option = document.createElement("option");
       option.value = distrito.id_distrito;
       option.textContent = distrito.distrito;
       selectDistrito.appendChild(option);
@@ -136,7 +133,7 @@ async function cargarDistritos(idCanton) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   cargarProvincias();
   cargarProveedores(); // si ya lo tenés, dejalo como está
 });

@@ -1,77 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Proveedores - Sistema Cenada</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/proveedor.css" />
+    <link rel="icon" href="logo.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Proveedores - Sistema Cenada</title>
-  <link rel="stylesheet" href="styles/style.css" />
-  <link rel="stylesheet" href="styles/proveedor.css" />
-  <link rel="icon" href="logo.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+  <body>
+    <header class="main-header">
+      <div class="header-content">
+        <img src="logo.png" alt="Logo del sitio" class="header-logo" />
+        <h1>Gestión de Proveedores</h1>
+      </div>
+      <button id="logout-button" class="logout-button">
+        <i class="fa-solid fa-lock"></i> Cerrar Sesión
+      </button>
+    </header>
 
-<body>
-  <header class="main-header">
-    <div class="header-content">
-      <img src="logo.png" alt="Logo del sitio" class="header-logo" />
-      <h1>Gestión de Proveedores</h1>
-    </div>
-    <button id="logout-button" class="logout-button">
-      <i class="fa-solid fa-lock"></i> Cerrar Sesión
-    </button>
-  </header>
+    <nav class="main-nav">
+      <ul>
+        <li>
+          <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+        </li>
+        <li>
+          <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
+        </li>
+        <li>
+          <a href="productos.html"
+            ><i class="fa-solid fa-basket-shopping"></i> Productos</a
+          >
+        </li>
+        <li>
+          <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
+        </li>
+        <li>
+          <a href="empleados.html"
+            ><i class="fa-solid fa-user-tie"></i> Empleados</a
+          >
+        </li>
+        <li>
+          <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
+        </li>
+        <li>
+          <a href="facturas.html"
+            ><i class="fa-solid fa-file-invoice"></i> Facturas</a
+          >
+        </li>
+        <li>
+          <a href="proveedores.html"
+            ><i class="fa-solid fa-truck"></i> Proveedores</a
+          >
+        </li>
+        <li>
+          <a href="inventario.html"
+            ><i class="fa-solid fa-boxes-stacked"></i> Inventario</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <main class="main-content">
+      <h2>Registro de Nuevo Proveedor</h2>
 
-  <nav class="main-nav">
+      <form id="proveedor-form">
+        <input
+          type="text"
+          id="nombre"
+          placeholder="Nombre del proveedor"
+          required
+        />
+        <input
+          type="text"
+          id="razonSocial"
+          placeholder="Razon Social"
+          required
+        />
+        <input type="text" id="telefono" placeholder="Teléfono" />
+        <input
+          type="email"
+          id="correo_electronico"
+          placeholder="Correo electrónico"
+        />
 
+        <label for="direccion">Dirección</label>
 
-    <ul>
-      <li>
-        <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-      </li>
-      <li>
-        <a href="personas.html"><i class="fa-solid fa-user"></i> Personas</a>
-      </li>
-      <li>
-        <a href="productos.html"><i class="fa-solid fa-basket-shopping"></i> Productos</a>
-      </li>
-      <li>
-        <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
-      </li>
-      <li>
-        <a href="empleados.html"><i class="fa-solid fa-user-tie"></i> Empleados</a>
-      </li>
-      <li>
-        <a href="ventas.html"><i class="fa-solid fa-receipt"></i> Ventas</a>
-      </li>
-      <li>
-        <a href="facturas.html"><i class="fa-solid fa-file-invoice"></i> Facturas</a>
-      </li>
-      <li>
-        <a href="proveedores.html"><i class="fa-solid fa-truck"></i> Proveedores</a>
-      </li>
-      <li>
-        <a href="inventario.html"><i class="fa-solid fa-boxes-stacked"></i> Inventario</a>
-      </li>
-    </ul>
-  </nav>
-  <main class="main-content">
-    <h2>Registro de Nuevo Proveedor</h2>
-
-    <form id="proveedor-form">
-      <input type="int" id="id_proveedor" placeholder="Id Proveedor" required />
-      <input type="text" id="nombre" placeholder="Nombre del proveedor" required />
-      <input type="text" id="razonSocial" placeholder="Razon Social" required />
-      <input type="text" id="telefono" placeholder="Teléfono" />
-      <input type="email" id="correo_electronico" placeholder="Correo electrónico" />
-
-      <label for="direccion">Dirección</label>
-    
-      <select id="provincia-select" class="select-verde" required>
-        <option value="" disabled selected>Seleccione Provincia</option>
-      </select>
+        <select id="provincia-select" class="select-verde" required>
+          <option value="" disabled selected>Seleccione Provincia</option>
+        </select>
 
         <select id="canton" class="select-verde" required disabled>
           <option value="" disabled selected>Seleccione Cantón</option>
@@ -80,48 +107,45 @@
         <select id="distrito" class="select-verde" required disabled>
           <option value="" disabled selected>Seleccione Distrito</option>
         </select>
-        <br>
-        <br>
-      <button type="submit">Agregar Proveedor</button>
-    </form>
+        <br />
+        <br />
+        <button type="submit">Agregar Proveedor</button>
+      </form>
 
-    <h3>Lista de Proveedores</h3>
-    <table id="proveedores-table">
-      <thead>
-        <tr>
-          <th>Id Proveedor</th>
-          <th>Nombre</th>
-          <th>Razon Social</th>
-          <th>Teléfono</th>
-          <th>Correo Electrónico</th>
-          <th>Dirección</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="lista-proveedores">
-        <!-- Aquí se llenarán los proveedores -->
-      </tbody>
+      <h3>Lista de Proveedores</h3>
+      <table id="proveedores-table">
+        <thead>
+          <tr>
+            <th>Id Proveedor</th>
+            <th>Nombre</th>
+            <th>Razon Social</th>
+            <th>Teléfono</th>
+            <th>Correo Electrónico</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="lista-proveedores">
+          <!-- Aquí se llenarán los proveedores -->
+        </tbody>
+      </table>
+    </main>
 
-    </table>
+    <div class="btn-volver">
+      <button onclick="window.location.href='index.html'" class="back-button">
+        <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
+      </button>
+    </div>
+    <br />
+    <br />
 
-  </main>
-
-
-  <div class="btn-volver">
-    <button onclick="window.location.href='index.html'" class="back-button">
-      <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
-    </button>
-  </div>
-  <br>
-  <br>
-
-
-  <footer class="main-footer">
-    <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
-    <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
-
-  </footer>
-  <script type="module" src="./modulos/proveedoresApp.js"></script>
-</body>
-
+    <footer class="main-footer">
+      <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+      <p>
+        Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander
+        Ubeda"
+      </p>
+    </footer>
+    <script type="module" src="./modulos/proveedoresApp.js"></script>
+  </body>
 </html>

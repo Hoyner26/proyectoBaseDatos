@@ -11,6 +11,9 @@
   --shadow-light: rgba(0, 0, 0, 0.08);
   --shadow-medium: rgba(0, 0, 0, 0.15);
 }
+body {
+  display: none;
+}
 
 body {
   font-family: "Poppins", sans-serif;

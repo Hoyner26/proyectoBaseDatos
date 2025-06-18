@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>Clientes - Sistema Cenada</title>
-  <link rel="stylesheet" href="styles/style.css" />
-  <link rel="stylesheet" href="styles/cliente.css" />
-  <link rel="icon" href="logo.ico">
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <title>Clientes - Sistema Cenada</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/cliente.css" />
+    <link rel="icon" href="logo.ico" />
+    <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
@@ -18,10 +17,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-</head>
+  </head>
 
-<body>
-  <header class="main-header">
+  <body>
+    <header class="main-header">
       <div class="header-content">
         <img src="logo.png" alt="Logo del sitio" class="header-logo" />
         <h1>Gestión de Clientes</h1>
@@ -32,8 +31,6 @@
     </header>
 
     <nav class="main-nav">
-
-     
       <ul>
         <li>
           <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
@@ -74,74 +71,82 @@
         </li>
       </ul>
     </nav>
-    
-  <main class="main-content">
-    <h2>Administración de Clientes</h2>
-    <p>Agrega, edita o elimina clientes del sistema.</p>
-  <form id="cliente-form">
-  <input type="number" id="id_cliente" placeholder="ID del cliente" required />
 
-  <!-- Select de personas -->
-  <select id="id_persona" required>
-    <option value="">Seleccione una persona</option>
-    <!-- Se llena dinámicamente con JS -->
-  </select>
+    <main class="main-content">
+      <h2>Administración de Clientes</h2>
+      <p>Agrega, edita o elimina clientes del sistema.</p>
+      <form id="cliente-form">
+        <!-- Select de personas -->
+        <select id="id_persona" required>
+          <option value="">Seleccione una persona</option>
+          <!-- Se llena dinámicamente con JS -->
+        </select>
 
-  <!-- Select tipo de cliente -->
-  <select id="tipo_cliente" required>
-    <option value="">Seleccione el tipo de cliente</option>
-    <option value="Mayorista">Mayorista</option>
-    <option value="Minorista">Minorista</option>
-  </select>
+        <!-- Select tipo de cliente -->
+        <select id="tipo_cliente" required>
+          <option value="">Seleccione el tipo de cliente</option>
+          <option value="Mayorista">Mayorista</option>
+          <option value="Minorista">Minorista</option>
+        </select>
 
-  <input type="text" id="codigo_frecuente" placeholder="Código frecuente" required />
+        <input
+          type="text"
+          id="codigo_frecuente"
+          placeholder="Código frecuente"
+          required
+        />
 
-  <!-- Select estado de pago -->
-  <select id="estado_pago_preferido" required>
-    <option value="">Seleccione estado de pago</option>
-    <option value="Contado">Contado</option>
-    <option value="Crédito">Crédito</option>
-  </select>
+        <!-- Select estado de pago -->
+        <select id="estado_pago_preferido" required>
+          <option value="">Seleccione estado de pago</option>
+          <option value="Contado">Contado</option>
+          <option value="Crédito">Crédito</option>
+        </select>
 
-  <input type="number" id="limite_credito" placeholder="Límite de crédito ₡" step="0.01" required />
+        <input
+          type="number"
+          id="limite_credito"
+          placeholder="Límite de crédito ₡"
+          step="0.01"
+          required
+        />
 
-  <button type="submit">Agregar Cliente</button>
-</form>
+        <button type="submit">Agregar Cliente</button>
+      </form>
 
+      <h3>Lista de Clientes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Id Cliente</th>
+            <th>Id Persona</th>
+            <th>Tipo</th>
+            <th>Código</th>
+            <th>Estado</th>
+            <th>Límite de Crédito</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="lista-clientes">
+          <!-- Clientes se cargan aquí -->
+        </tbody>
+      </table>
+      <script type="module" src="./modulos/clientesApp.js"></script>
+      <br />
+      <br />
+      <div class="btn-volver">
+        <button onclick="window.location.href='index.html'" class="back-button">
+          <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
+        </button>
+      </div>
+    </main>
 
-  <h3>Lista de Clientes</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Id Cliente</th>
-        <th>Id Persona</th>
-        <th>Tipo</th>
-        <th>Código</th>
-        <th>Estado</th>
-        <th>Límite de Crédito</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody id="lista-clientes">
-      <!-- Clientes se cargan aquí -->
-    </tbody>
-  </table>
-  <script type="module" src="./modulos/clientesApp.js"></script>
-  <br>
-  <br>
-  <div class="btn-volver">
-      <button onclick="window.location.href='index.html'" class="back-button">
-        <i class="fa-solid fa-arrow-left"></i> Volver al Menú Principal
-      </button>
-    </div>
-
-</main>
-
-  <footer class="main-footer">
-    <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
-    <p>Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander Ubeda"</p>
-
-  </footer>
-</body>
-
+    <footer class="main-footer">
+      <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
+      <p>
+        Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander
+        Ubeda"
+      </p>
+    </footer>
+  </body>
 </html>

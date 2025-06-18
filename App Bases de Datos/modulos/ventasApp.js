@@ -115,7 +115,8 @@ async function cargarEmpleados() {
   const selectEmpleado = document.getElementById("empleado");
   const { data, error } = await supabase
     .from("empleado")
-    .select("id_empleado, persona(id_persona, nombre, apellido1, apellido2)");
+    .select("id_empleado, persona(id_persona, nombre, apellido1, apellido2)")
+    .eq("cargo", "Cajero");
 
   if (error) {
     console.error("Error cargando empleados:", error);

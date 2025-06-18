@@ -1,61 +1,213 @@
+/* --- Variables CSS para una fácil personalización del tema --- */
+:root {
+  --primary-color: #007bff; /* Un azul profesional y amigable */
+  --primary-hover: #0056b3;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --light-gray: #f8f9fa;
+  --medium-gray: #e9ecef;
+  --dark-gray: #6c757d;
+  --text-color: #343a40;
+  --white: #ffffff;
+  --font-family: "Poppins", sans-serif;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+}
+
+/* --- Estilos base y del cuerpo --- */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, #e0eafc, #cfdef3); /* Gradiente sutil */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Contenedor principal */
-#login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* --- Contenedor y Tarjeta de Login --- */
+.login-container {
+  padding: 20px;
+  width: 100%;
 }
 
-/* Logo */
-#logo {
-  width: 60px;
-  margin-bottom: 20px;
-}
-
-/* Formulario */
-form {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
-form h2 {
+.login-card {
+  background-color: var(--white);
+  padding: clamp(25px, 5vw, 40px); /* Padding adaptable */
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
   text-align: center;
+  transition: all var(--transition-speed) ease-in-out;
+}
+
+.logo {
+  width: 70px;
+  height: auto;
   margin-bottom: 20px;
-  color: black;
 }
 
-input {
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+h2 {
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: var(--text-color);
 }
 
-button {
-  padding: 10px;
-  background-color: #21da80;
-  color: white;
-  border: none;
-  border-radius: 5px;
+/* --- Grupo de Inputs con Iconos --- */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group .icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--dark-gray);
+  transition: color var(--transition-speed);
+}
+
+.input-group input {
+  width: 100%;
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+  padding: 12px 15px 12px 45px; /* Espacio para el icono */
+  border: 1px solid var(--medium-gray);
+  border-radius: var(--border-radius);
   font-size: 16px;
-  cursor: pointer;
+  font-family: var(--font-family);
+  transition: border-color var(--transition-speed),
+    box-shadow var(--transition-speed);
 }
 
-button:hover {
-  background-color: #45a049;
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.input-group input:focus ~ .icon {
+  color: var(--primary-color);
+}
+
+/* --- Transición animada para el campo de nombre --- */
+#nombre-group {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out,
+    margin-bottom 0.5s ease-out;
+  margin-bottom: 0;
+}
+
+#nombre-group.visible {
+  max-height: 100px; /* Suficiente para el input */
+  opacity: 1;
+  margin-bottom: 20px;
+}
+
+/* --- Botón de envío --- */
+#submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#submit-button:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+#submit-button:disabled {
+  background-color: var(--dark-gray);
+  cursor: not-allowed;
+}
+
+.button-icon {
+  transition: all var(--transition-speed) ease;
+}
+
+/* --- Spinner para el estado de carga --- */
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--white);
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Texto para cambiar entre login/registro --- */
+.toggle-text {
+  margin-top: 25px;
+  font-size: 14px;
+}
+
+.toggle-text a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.toggle-text a:hover {
+  text-decoration: underline;
+}
+
+/* --- Contenedor de mensajes (errores/éxito) --- */
+#message-container {
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  text-align: center;
+  display: none; /* Oculto por defecto */
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#message-container.success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+  display: block;
+}
+
+#message-container.error {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+  display: block;
 }

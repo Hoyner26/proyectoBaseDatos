@@ -1,37 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acceso de Usuario | Profesional</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Login</title>
-  <link rel="stylesheet" href="styles/login.css" />
-  <link rel="icon" href="logo.ico">
-</head>
+    <!-- Google Fonts: Poppins para una tipografía moderna -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-<body>
+    <!-- Tus estilos CSS -->
+    <link rel="stylesheet" href="styles/login.css" />
+    <link rel="icon" href="logo.ico" />
 
+    <!-- Font Awesome para iconos - ¡IMPORTANTE! Reemplaza con tu propio Kit -->
+    <!-- Visita https://fontawesome.com/kits para crear uno gratis -->
+    <script
+      src="https://kit.fontawesome.com/80a0083580.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <main class="login-container">
+      <div class="login-card">
+        <img src="logo.png" alt="Logo de la Aplicación" class="logo" />
+        <h2 id="form-title">Iniciar Sesión</h2>
 
-  <div id="login-container">
-  <img src="logo.png" alt="Logo" id="logo" />
+        <!-- Contenedor para mostrar mensajes de error o éxito -->
+        <div id="message-container"></div>
 
-  <form id="login-form">
-    <h2>Iniciar Sesión</h2>
+        <form id="login-form" novalidate>
+          <!-- Grupo para el campo de Nombre Completo (solo en registro) -->
+          <div class="input-group" id="nombre-group">
+            <i class="fas fa-user icon"></i>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Nombre completo"
+              autocomplete="name"
+            />
+          </div>
 
-    <label for="usuario">Usuario:</label>
-    <input type="text" id="usuario" name="usuario" required />
+          <!-- Grupo para el campo de Correo Electrónico -->
+          <div class="input-group">
+            <i class="fas fa-envelope icon"></i>
+            <input
+              type="email"
+              id="usuario"
+              name="usuario"
+              placeholder="Correo electrónico"
+              required
+              autocomplete="email"
+            />
+          </div>
 
-    <label for="clave">Contraseña:</label>
-    <input type="password" id="clave" name="clave" required />
+          <!-- Grupo para el campo de Contraseña -->
+          <div class="input-group">
+            <i class="fas fa-lock icon"></i>
+            <input
+              type="password"
+              id="clave"
+              name="clave"
+              placeholder="Contraseña"
+              required
+              autocomplete="current-password"
+            />
+          </div>
 
-    <button type="submit">🔓 Entrar</button>
-  </form>
-</div>
+          <button type="submit" id="submit-button">
+            <span class="button-text">Entrar</span>
+            <i class="fas fa-sign-in-alt button-icon"></i>
+          </button>
+        </form>
 
-  <p id="mensaje"></p>
+        <p class="toggle-text">
+          ¿No tienes cuenta? <a href="#" id="toggle-link">Regístrate</a>
+        </p>
+      </div>
+    </main>
 
-  <script src="modulos/login.js"></script>
-
-  
-</body>
-
+    <script type="module" src="modulos/login.js"></script>
+  </body>
 </html>

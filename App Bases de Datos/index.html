@@ -17,32 +17,28 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!-- Reemplaza el script que tenías antes por esto -->
+
+    <script type="module" src="/modulos/dashboard.js"></script>
     <script type="module">
-      import { supabase } from "./supabaseClient.js";
+      import { supabase } from "./modulos/supabaseClient.js";
 
-      // Nota: Esta consulta se mantiene aquí por si quieres mostrar datos reales
-      // en el dashboard en el futuro. Por ahora, los datos son de ejemplo.
-      const fetchData = async () => {
-        const { data, error } = await supabase.from("frutas").select("*");
-        if (error) console.error("Error fetching data:", error);
-        // console.log("Datos de frutas:", data);
-      };
-      fetchData();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
 
-      // Implementar el contador de personas (ejemplo simple)
-      // Idealmente, esto se haría en un módulo JS separado y traería datos reales de Supabase
-      document.addEventListener("DOMContentLoaded", () => {
-        const totalPersonasElement = document.getElementById("total-personas");
-        const totalProductosElement =
-          document.getElementById("total-productos");
-        const totalVentasElement = document.getElementById("total-ventas");
-
-        // Datos de ejemplo
-        totalPersonasElement.textContent = "150"; // Reemplazar con count real de Supabase
-        totalProductosElement.textContent = "230"; // Reemplazar con count real de Supabase
-        totalVentasElement.textContent = "85"; // Reemplazar con count real de Supabase
-      });
+      if (!session) {
+        window.location.href = "login.html";
+      } else {
+        document.body.style.display = "block";
+      }
     </script>
+
+    <style>
+      body {
+        display: none;
+      }
+    </style>
   </head>
 
   <body>
@@ -150,30 +146,6 @@
           <i class="fa-solid fa-box-open"></i>
           <span>Ver Inventario Completo</span>
         </a>
-      </div>
-
-      <div class="recent-activity">
-        <h3>
-          <i class="fa-solid fa-clock-rotate-left"></i> Actividad Reciente
-        </h3>
-        <ul class="data-list">
-          <li>
-            <strong>2025-06-13:</strong> Nueva persona agregada: Juan Pérez (ID:
-            12345)
-          </li>
-          <li><strong>2025-06-13:</strong> Venta #0012 procesada por $55.00</li>
-          <li>
-            <strong>2025-06-12:</strong> Inventario de "Manzanas Rojas"
-            actualizado (+10 kg)
-          </li>
-          <li>
-            <strong>2025-06-12:</strong> Nuevo cliente registrado: Frutería La
-            Esquina
-          </li>
-        </ul>
-        <button class="view-all-button">
-          <i class="fa-solid fa-eye"></i> Ver todo el historial
-        </button>
       </div>
     </main>
 
