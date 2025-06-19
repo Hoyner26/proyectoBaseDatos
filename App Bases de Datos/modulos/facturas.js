@@ -5,6 +5,15 @@ export async function obtenerFacturas() {
   return data || [];
 }
 
+export async function obtenerFacturaEspecialData(id) {
+  const { data, error } = await supabase.from('view_facturas_completa').select('*').eq('numero_factura', id).single();
+    if (error) {
+        console.error('Error al obtener factura por ID:', error.message);
+        return null;
+    }
+    return data;
+}
+
 export async function agregarFactura(factura) {
   const { error } = await supabase.from('facturas').insert([factura]);
   if (error) console.error('Error al insertar factura:', error.message);
