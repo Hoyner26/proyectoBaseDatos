@@ -49,6 +49,51 @@ export async function agregarPersona(persona) {
 }
 
 export async function obtenerPersonas() {
+  const { data, error } = await supabase
+    .from("view_personas_info_full")
+    .select(`
+      id_persona,
+      nombre_persona,
+      genero,
+      direccion,
+      correo_electronico,
+      telefono
+    `);
+
+  if (error) {
+    console.error("Error obteniendo personas desde el view:", error);
+    return [];
+  }
+
+  const personasMap = new Map();
+
+  data.forEach((row) => {
+    const key = row.id_persona;
+    if (!personasMap.has(key)) {
+      personasMap.set(key, {
+        id_persona: row.id_persona,
+        nombre_persona: row.nombre_persona,
+        genero: row.genero,
+        direccion: row.direccion,
+        correos: [],
+        telefonos: [],
+      });
+    }
+    const persona = personasMap.get(key);
+
+    // Sólo agregamos si no existe ya en el array
+    if (row.correo_electronico && !persona.correos.includes(row.correo_electronico)) {
+      persona.correos.push(row.correo_electronico);
+    }
+    if (row.telefono && !persona.telefonos.includes(row.telefono)) {
+      persona.telefonos.push(row.telefono);
+    }
+  });
+
+  return Array.from(personasMap.values());
+}
+
+export async function obtenerPersonasOtro() {
   const { data, error } = await supabase.from("persona").select(`
       id_persona,
       nombre,
