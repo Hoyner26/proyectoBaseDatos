@@ -19,9 +19,7 @@ async function cargarDetallesPersona() {
     document.getElementById("detail-id").textContent = persona.id_persona;
     document.getElementById("detail-nombre").textContent = persona.nombre_persona || "No disponible"; // Asegúrate de que 'nombre' sea un string legible
     document.getElementById("detail-genero").textContent = persona.genero; // Asumiendo que 'genero' ya es un string legible
-    document.getElementById(
-      "detail-direccion"
-    ).textContent = persona.direccion || "No disponible";; //.textContent = persona.direccion || "No disponible";
+    document.getElementById("detail-direccion").textContent = persona.direccion || "No disponible";; //.textContent = persona.direccion || "No disponible";
 
     const telefonosList = document.getElementById("detail-telefonos");
     telefonosList.innerHTML = "";

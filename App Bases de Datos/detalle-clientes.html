@@ -3,7 +3,7 @@
     <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detalle de factura - Frutas y Verduras Cenada</title>
+    <title>Detalle de cliente - Frutas y Verduras Cenada</title>
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/detalle-persona.css" />
     <link rel="icon" href="logo.ico" />
@@ -23,7 +23,7 @@
     <header class="main-header">
       <div class="header-content">
         <img src="logo.png" alt="Logo del sitio" class="header-logo" />
-        <h1>Detalles de factura</h1>
+        <h1>Detalles de cliente</h1>
       </div>
       <button id="logout-button" class="logout-button">
         <i class="fa-solid fa-lock"></i> Cerrar Sesión
@@ -71,40 +71,42 @@
       </ul>
     </nav>
     <main class="main-content">
-      <h2>Información Completa de la factura</h2>
-      <div id="factura-details" class="details-card">
-        <h3><strong>Frutas y Verduras Cenada.</strong></h3>
-        <td><strong>ID Factura:</strong> <span id="detail-id"></span></td>
-        <td><strong>Fecha:</strong> <span id="detail-date"></span></td>
-        <P><strong>Cajero:</strong><span id="detail-cashier"></span></P>
-        <p><strong>Cliente:</strong> <span id="detail-client"></span></p>
-        <h3>Productos:</h3>
-        <p><strong>ID Pedido: </strong><span id="detail-pedido"></span></p>
-        <p><strong>Pago: </strong><span id="detail-pago"></span></p>
-        <p><strong>Estado de Pago: </strong><span id="detail-estado"></span></p>
-        <p><strong>Saldo: </strong>₡<span id="detail-total"></span></p>
-        <div class="form-buttons">
-          <button
-            type="button"
-            onclick="window.history.back()"
-            class="back-button"
-          >
-            <i class="fa-solid fa-arrow-left"></i> Volver a la Lista
-          </button>
+        <h2>Información completa del Cliente: </h2>
+        <div id="details-cliente"class="details-card">
+            <h3>Detalles del Cliente: </h3>
+            <td><strong>Nombre: </strong> <span id="detail-nombre"></span></td>
+            <td><strong>ID cliente: </strong> <span id="detail-id"></span></td>
+            <P><strong>Tipo cliente: </strong><span id="detail-tipo-cliente"></span></P>
+            <P><strong>Código frecuente: </strong><span id="detail-codigo-favorito"></span></P>      
+            <P><strong>Método de pago favorito: </strong><span id="detail-metodo-favorito"></span></P>
+            <P><strong>Límite de crédito: </strong><span id="detail-credito"></span></P>
+            <h3>Detalles personales: </h3>  
+            <p><strong>ID persona: </strong><span id="detail-id-persona"></span></p>
+            <p><strong>Género: </strong><span id=detail-genero></span></p>
+            <p><strong>Dirección: </strong><span id=detail-direccion></span></p>
+            <h3>Números de telefono: </h3>
+            <ul id="detail-telefonos"></ul>
+            <h3>Correos electrónicos: </h3>
+            <ul id="detail-correos"></ul>
         </div>
+      <div class="form-buttons">
+        <button
+          type="button"
+          onclick="window.history.back()"
+          class="back-button"
+        >
+          <i class="fa-solid fa-arrow-left"></i> Volver a la Lista
+        </button>
       </div>
-
-      
-      <script src="modulos/logout.js"></script>
-    <script type="module" src="modulos/detalleFacturasApp.js"></script>
+    </main>
+    <script src="modulos/logout.js"></script>
+    <script type="module" src="modulos/detalleClientesApp.js"></script>
     <footer class="main-footer">
       <p>© 2023 Frutas y Verduras Cenada. Todos los derechos reservados.</p>
       <p>
         Desarrollado por "Hoyner Zamora, Ryan Vargas, Andres Quiros, Alexander
         Ubeda"
       </p>
-    </footer>
-  </main>
+    </footer>  
   </body>
- 
-</html>
+  </html>
