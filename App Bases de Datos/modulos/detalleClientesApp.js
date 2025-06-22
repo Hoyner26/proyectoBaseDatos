@@ -1,7 +1,7 @@
 import {obtenerClientesFull} from "./clientes.js";
 import "./logout.js"; 
 
-async function cargarDetallesCliente() {
+async function cargarDetallesCliente() {// Esta función carga los detalles del cliente desde la URL y los muestra en el DOM
     const urlParams = new URLSearchParams(window.location.search);
     const idCliente = urlParams.get("id"); // Obtenemos el ID del cliente de la URL
     if (!idCliente) {

@@ -4,13 +4,13 @@ import {obtenerPersonaPorId} from './personas.js';
 import {obtenerPedidos,obtenerPedidoPorId} from './pedido.js';
 import {obtenerVentaPorId} from './ventas.js';
 
-const form = document.getElementById('factura-form');
+const form = document.getElementById('factura-form');// Asegúrate de que el formulario tenga este ID en tu HTML
 
-form?.addEventListener('submit', async (event) => {
+form?.addEventListener('submit', async (event) => {// Esta función se ejecuta al enviar el formulario
     event.preventDefault();
     const selectPedido = document.getElementById('pedido_id').value;
     const pedido = await obtenerPedidoPorId(selectPedido);
-    if(pedido.cantidad_faltante == 0) {
+    if(pedido.cantidad_faltante == 0) {// Si el pedido está completado, no se permite cambiar moneda ni estado de pago
         const tal = await obtenerVentaPorId(pedido.id_venta);
         const factura = {
         id_pedido: parseInt(document.getElementById('pedido_id').value),
@@ -20,13 +20,13 @@ form?.addEventListener('submit', async (event) => {
         total_pago: tal.total,
         fecha_emision: document.getElementById('fecha_emision').value
         };
-        await agregarFactura(factura);
+        await agregarFactura(factura);// Agregar la factura a la base de datos
         form.reset();
         cargarFacturas();
         alIniciar();
     }
     else{
-        const factura = {
+        const factura = {// Obtenemos los datos del formulario
         id_pedido: parseInt(document.getElementById('pedido_id').value),
         id_empleado: parseInt(document.getElementById('empleado_id').value),
         moneda: document.getElementById('moneda_id').value,
@@ -43,12 +43,12 @@ form?.addEventListener('submit', async (event) => {
 
 
 
-async function cargarFacturas() {
+async function cargarFacturas() {// Esta función carga las facturas desde la base de datos y las muestra en la tabla
     const facturas = await obtenerFacturas();
     const lista = document.getElementById('facturas-list');
     lista.innerHTML = '';
 
-    facturas.forEach(factura => {
+    facturas.forEach(factura => {// Por cada factura, creamos una fila en la tabla
         const fila = document.createElement('tr');
         fila.innerHTML = `
             <td>${factura.id_factura}</td>
@@ -67,7 +67,7 @@ async function cargarFacturas() {
         lista.appendChild(fila);
     });
 
-    document.querySelectorAll('.eliminar-btn').forEach(boton => {
+    document.querySelectorAll('.eliminar-btn').forEach(boton => {// Añadimos un evento de clic a cada botón de eliminar
         boton.addEventListener('click', async () => {
             const id = boton.getAttribute('data-id');
             await eliminarFactura(id);
@@ -76,11 +76,11 @@ async function cargarFacturas() {
     });
 }
 
-async function cargarEmpleados() {
+async function cargarEmpleados() {// Esta función carga los empleados desde la base de datos y los muestra en el select
     const empleados = await obtenerEmpleados();
     const selectEmpleado = document.getElementById('empleado_id');
-    empleados.forEach(async empleado => {
-        if(empleado.cargo=='Cajero'){
+    empleados.forEach(async empleado => {// Por cada empleado, creamos una opción en el select
+        if(empleado.cargo=='Cajero'){// Solo mostramos los empleados que son cajeros
             const option = document.createElement('option');
             option.value = empleado.id_empleado;
             const persona = await obtenerPersonaPorId(empleado.id_persona);
@@ -90,7 +90,7 @@ async function cargarEmpleados() {
     });
 }
 
-async function cargarPedidos() {
+async function cargarPedidos() {// Esta función carga los pedidos desde la base de datos y los muestra en el select
     const pedidos = await obtenerPedidos();
     const selectPedido = document.getElementById('pedido_id');
     pedidos.forEach(pedido => {
@@ -102,7 +102,7 @@ async function cargarPedidos() {
     
 }
 
-async function siCompletado() {
+async function siCompletado() {// Esta función se ejecuta al cambiar el pedido seleccionado
     const selectPedido = document.getElementById('pedido_id').value;
     const pedido = await obtenerPedidoPorId(selectPedido);
     if(pedido.cantidad_faltante == 0) {
@@ -129,7 +129,7 @@ async function siCompletado() {
     }
 }
 
-async function alIniciar() {
+async function alIniciar() {// Esta función se ejecuta al iniciar la página
     const estadoPago = document.getElementById('estado_pago_id');
     estadoPago.style.display = 'none';
     estadoPago.disabled = true;

@@ -27,7 +27,7 @@ async function cargarDatosIniciales() {
   }
 }
 
-async function cargarVentas() {
+async function cargarVentas() {// Esta función carga las ventas desde la base de datos y las muestra en la tabla
   const ventas = await obtenerVentas();
   listaVentas.innerHTML = "";
 
@@ -37,7 +37,7 @@ async function cargarVentas() {
     return;
   }
 
-  ventas.forEach((venta) => {
+  ventas.forEach((venta) => {// Por cada venta, creamos una fila en la tabla
     const fila = document.createElement("tr");
     fila.innerHTML = `
       <td>${venta.id_venta}</td>
@@ -66,7 +66,7 @@ async function cargarVentas() {
   asignarListenersBotones();
 }
 
-function asignarListenersBotones() {
+function asignarListenersBotones() {// Asigna los eventos a los botones de eliminar y editar
   document.querySelectorAll(".delete-button").forEach((button) => {
     button.addEventListener("click", async (e) => {
       const id = e.currentTarget.dataset.id;
@@ -84,7 +84,7 @@ function asignarListenersBotones() {
     });
   });
 
-  document.querySelectorAll(".edit-button").forEach((button) => {
+  document.querySelectorAll(".edit-button").forEach((button) => {// Añadimos un evento de clic a cada botón de editar
     button.addEventListener("click", (e) => {
       const id = e.currentTarget.dataset.id;
       alert(`Funcionalidad de editar para la venta ID ${id} no implementada.`);
@@ -92,7 +92,7 @@ function asignarListenersBotones() {
   });
 }
 
-async function cargarClientes() {
+async function cargarClientes() {// Esta función carga los clientes desde la base de datos y los muestra en el select
   const selectCliente = document.getElementById("cliente");
   const { data, error } = await supabase
     .from("cliente")
@@ -103,7 +103,7 @@ async function cargarClientes() {
     return;
   }
 
-  data.forEach((cliente) => {
+  data.forEach((cliente) => {// Por cada cliente, creamos una opción en el select
     const option = document.createElement("option");
     option.value = cliente.id_cliente;
     option.textContent = `${cliente.persona.nombre} ${cliente.persona.apellido1} ${cliente.persona.apellido2}`;
@@ -111,7 +111,7 @@ async function cargarClientes() {
   });
 }
 
-async function cargarEmpleados() {
+async function cargarEmpleados() {// Esta función carga los empleados desde la base de datos y los muestra en el select
   const selectEmpleado = document.getElementById("empleado");
   const { data, error } = await supabase
     .from("empleado")
@@ -131,7 +131,7 @@ async function cargarEmpleados() {
   });
 }
 
-async function cargarProductos() {
+async function cargarProductos() {// Esta función carga los productos desde la base de datos y los almacena en productosDisponibles
   const { data, error } = await supabase
     .from("producto")
     .select("id_producto, nombre_producto, precio");
@@ -144,7 +144,7 @@ async function cargarProductos() {
 
 // --- Productos Dinámicos ---
 
-function agregarFilaProducto() {
+function agregarFilaProducto() {// Esta función agrega una nueva fila de producto al formulario
   const itemDiv = document.createElement("div");
   itemDiv.classList.add("producto-item");
 
@@ -152,7 +152,7 @@ function agregarFilaProducto() {
   selectProducto.required = true;
   selectProducto.innerHTML = `<option value="" disabled selected>Seleccione un producto</option>`;
 
-  productosDisponibles.forEach((p) => {
+  productosDisponibles.forEach((p) => {// Por cada producto, creamos una opción en el select
     const option = document.createElement("option");
     option.value = p.id_producto;
     option.textContent = `${p.nombre_producto} - ₡${p.precio}`;
@@ -184,7 +184,7 @@ function agregarFilaProducto() {
   inputCantidad.addEventListener("input", actualizarTotal);
 }
 
-function actualizarTotal() {
+function actualizarTotal() {// Esta función actualiza el total de la venta al cambiar los productos o cantidades
   let totalCalculado = 0;
   const items = productosContainer.querySelectorAll(".producto-item");
 
@@ -208,7 +208,7 @@ function actualizarTotal() {
 
 agregarProductoBtn.addEventListener("click", agregarFilaProducto);
 
-form?.addEventListener("submit", async (e) => {
+form?.addEventListener("submit", async (e) => {// Añadir un evento de envío al formulario de ventas
   e.preventDefault();
 
   const ventaData = {
@@ -244,7 +244,7 @@ form?.addEventListener("submit", async (e) => {
   }
 
   // Verificar stock antes de insertar la venta
-  for (const detalle of detallesData) {
+  for (const detalle of detallesData) {// Por cada detalle de venta, verificamos el inventario
     const { data: inventarioData, error } = await supabase
       .from("inventario")
       .select("cantidad")
@@ -268,7 +268,7 @@ form?.addEventListener("submit", async (e) => {
     }
   }
 
-  try {
+  try {// Intentar agregar la venta completa
     await agregarVentaCompleta(ventaData, detallesData);
 
     // Actualizar inventario restando la cantidad vendida

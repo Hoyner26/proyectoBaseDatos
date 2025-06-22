@@ -5,8 +5,8 @@ import {
 } from "./proveedores.js";
 import { supabase } from "./supabaseClient.js";
 const form = document.getElementById("proveedor-form");
-
-form?.addEventListener("submit", async (e) => {
+// Asegúrate de que el formulario tenga el ID correcto en tu HTML
+form?.addEventListener("submit", async (e) => {// Esta función se ejecuta al enviar el formulario
   e.preventDefault();
 
   const nuevoProveedor = {
@@ -27,7 +27,7 @@ form?.addEventListener("submit", async (e) => {
   cargarProveedores();
 });
 
-async function cargarProveedores() {
+async function cargarProveedores() {// Esta función carga los proveedores desde la base de datos y los muestra en la tabla
   const proveedores = await obtenerProveedores();
   const lista = document.getElementById("lista-proveedores");
   lista.innerHTML = "";
@@ -49,7 +49,7 @@ async function cargarProveedores() {
     lista.appendChild(fila);
   });
 
-  document.querySelectorAll(".eliminar-btn").forEach((btn) => {
+  document.querySelectorAll(".eliminar-btn").forEach((btn) => {// Añadimos un evento de clic a cada botón de eliminar
     btn.addEventListener("click", async () => {
       const id = btn.dataset.id;
       if (confirm(`¿Eliminar proveedor con ID ${id}?`)) {
@@ -60,7 +60,7 @@ async function cargarProveedores() {
   });
 }
 
-async function cargarProvincias() {
+async function cargarProvincias() {// Esta función carga las provincias desde la base de datos y las añade al select
   const { data, error } = await supabase.from("provincias").select("*");
   if (error) {
     console.error("Error al cargar provincias:", error);
@@ -78,7 +78,7 @@ async function cargarProvincias() {
   });
 
   // Habilitar cantones cuando se seleccione una provincia
-  selectProvincia.addEventListener("change", async (e) => {
+  selectProvincia.addEventListener("change", async (e) => {// Esta función se ejecuta al cambiar la provincia
     const idProvincia = e.target.value;
     await cargarCantones(idProvincia);
     document.getElementById("canton").disabled = false;
@@ -88,7 +88,7 @@ async function cargarProvincias() {
   });
 }
 
-async function cargarCantones(idProvincia) {
+async function cargarCantones(idProvincia) {// Esta función carga los cantones según la provincia seleccionada
   const { data, error } = await supabase
     .from("cantones")
     .select("*")
@@ -98,7 +98,7 @@ async function cargarCantones(idProvincia) {
   selectCanton.innerHTML = '<option value="">Seleccione Cantón</option>';
 
   if (data) {
-    data.forEach((canton) => {
+    data.forEach((canton) => {// Por cada cantón, creamos una opción en el select
       const option = document.createElement("option");
       option.value = canton.id_canton;
       option.textContent = canton.canton;
@@ -114,7 +114,7 @@ async function cargarCantones(idProvincia) {
   }
 }
 
-async function cargarDistritos(idCanton) {
+async function cargarDistritos(idCanton) {// Esta función carga los distritos según el cantón seleccionado
   const { data, error } = await supabase
     .from("distritos")
     .select("*")

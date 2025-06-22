@@ -3,7 +3,7 @@ import { supabase } from "./supabaseClient.js";
 /**
  * Obtiene todas las ventas con información del cliente y empleado.
  */
-export async function obtenerVentas() {
+export async function obtenerVentas() {// Esta función obtiene todas las ventas de la base de datos
   const { data, error } = await supabase.from("venta").select(`
     id_venta,
     fecha,
@@ -96,7 +96,7 @@ export async function eliminarVentaPorId(id) {
   }
 }
 
-export async function obtenerVentaPorId(id) {
+export async function obtenerVentaPorId(id) {// Esta función obtiene una venta específica por su id_venta
   const { data, error } = await supabase.from('venta').select('*')
     .eq("id_venta", id)
     .single();

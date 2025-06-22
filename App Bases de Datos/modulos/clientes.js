@@ -1,36 +1,36 @@
 // modulos/clientes.js
 import { supabase } from "./supabaseClient.js";
 
-export async function obtenerClientes() {
+export async function obtenerClientes() {// Esta función obtiene todos los clientes de la tabla "cliente"
   const { data, error } = await supabase.from("cliente").select("*");
   if (error) console.error("Error al obtener clientes:", error.message);
   return data || [];
 }
 
-//obtener id_personas para relacionar con cliente
-export async function obtenerIdPersonas() {
+
+export async function obtenerIdPersonas() {// Esta función obtiene todos los id_persona de la tabla "persona"
   const { data, error } = await supabase.from("persona").select("id_persona");
   if (error) console.error("Error al obtener id_personas:", error.message);
   return data || [];
 }
 
-export async function agregarCliente(cliente) {
+export async function agregarCliente(cliente) {// Esta función agrega un nuevo cliente a la tabla "cliente"
   const { error } = await supabase.from("cliente").insert([cliente]);
   if (error) console.error("Error al insertar cliente:", error.message);
 }
 
-export async function eliminarClientePorId(id) {
+export async function eliminarClientePorId(id) {// Esta función elimina un cliente por su id_cliente
   const { error } = await supabase
     .from("cliente")
     .delete()
     .eq("id_cliente", id);
-  if (error) {
+  if (error) {// Si hay un error al eliminar el cliente, lo mostramos en la consola y alertamos al usuario
     console.error("Error al eliminar cliente:", error.message);
     alert("No se pudo eliminar el cliente.");
   }
 }
 
-export async function obtenerClientesFull() {
+export async function obtenerClientesFull() {// Esta función obtiene todos los clientes con información completa desde el view "view_clientes_info_full"
   const { data, error } = await supabase.from("view_clientes_info_full").select(`*`);
   if (error) {
     console.error("Error obteniendo personas desde el view:", error);
@@ -39,7 +39,8 @@ export async function obtenerClientesFull() {
 
   const personasMap = new Map();
 
-  data.forEach((row) => {
+  data.forEach((row) => {// Iteramos sobre cada fila de datos obtenidos
+    // Creamos un mapa para evitar duplicados basados en id_persona
     const key = row.id_persona;
     if (!personasMap.has(key)) {
       personasMap.set(key, {
@@ -67,5 +68,5 @@ export async function obtenerClientesFull() {
     }
   });
 
-  return Array.from(personasMap.values());
+  return Array.from(personasMap.values());// Convertimos el mapa a un array y lo retornamos
 }

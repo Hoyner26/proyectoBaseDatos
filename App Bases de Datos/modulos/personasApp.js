@@ -8,7 +8,7 @@ import { supabase } from "./supabaseClient.js";
 
 const form = document.getElementById("persona-form");
 
-form?.addEventListener("submit", async (e) => {
+form?.addEventListener("submit", async (e) => {// Esta función maneja el evento de envío del formulario
   e.preventDefault();
   const nueva = {
     id_persona: document.getElementById("id_persona").value,
@@ -54,12 +54,12 @@ form?.addEventListener("submit", async (e) => {
   cargarPersonas();
 });
 
-async function cargarPersonas() {
+async function cargarPersonas() {// Esta función carga las personas desde la base de datos y las muestra en la tabla
   const personas = await obtenerPersonasOtro();
   const lista = document.getElementById("lista-personas");
   lista.innerHTML = "";
 
-  personas.forEach((persona) => {
+  personas.forEach((persona) => {// Por cada persona, creamos una fila en la tabla
     const fila = document.createElement("tr");
 
     fila.innerHTML = `
@@ -102,7 +102,7 @@ async function cargarPersonas() {
   });
 }
 
-async function cargarGeneros() {
+async function cargarGeneros() {// Esta función carga los géneros desde la base de datos y los muestra en un select
   const { data } = await supabase.from("generos").select("*");
   const select = document.getElementById("genero");
   select.innerHTML =
@@ -115,7 +115,7 @@ async function cargarGeneros() {
   });
 }
 
-async function cargarProvincias() {
+async function cargarProvincias() {// Esta función carga las provincias desde la base de datos y las muestra en un select
   const { data } = await supabase.from("provincias").select("*");
   const select = document.getElementById("provincia");
   select.innerHTML =
@@ -128,7 +128,7 @@ async function cargarProvincias() {
   });
 }
 
-document.getElementById("provincia").addEventListener("change", async (e) => {
+document.getElementById("provincia").addEventListener("change", async (e) => {// Esta función maneja el evento de cambio del select de provincia
   const idProvincia = e.target.value;
   const { data } = await supabase
     .from("cantones")
@@ -149,7 +149,7 @@ document.getElementById("provincia").addEventListener("change", async (e) => {
   });
 });
 
-document.getElementById("canton").addEventListener("change", async (e) => {
+document.getElementById("canton").addEventListener("change", async (e) => {// Esta función maneja el evento de cambio del select de cantón
   const idCanton = e.target.value;
   const { data } = await supabase
     .from("distritos")
@@ -167,13 +167,13 @@ document.getElementById("canton").addEventListener("change", async (e) => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {// Esta función se ejecuta cuando el DOM está completamente cargado
   cargarPersonas();
   cargarGeneros();
   cargarProvincias();
 });
 
-document.getElementById("agregar-correo").addEventListener("click", () => {
+document.getElementById("agregar-correo").addEventListener("click", () => {// Esta función añade un nuevo campo de correo electrónico al formulario
   const container = document.getElementById("correos-container");
   const input = document.createElement("input");
   input.type = "email";
@@ -183,7 +183,7 @@ document.getElementById("agregar-correo").addEventListener("click", () => {
   container.appendChild(input);
 });
 
-document.getElementById("agregar-telefono").addEventListener("click", () => {
+document.getElementById("agregar-telefono").addEventListener("click", () => {// Esta función añade un nuevo campo de teléfono al formulario
   const container = document.getElementById("telefonos-container");
   const input = document.createElement("input");
   input.type = "tel";

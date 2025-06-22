@@ -38,17 +38,18 @@ form?.addEventListener("submit", async (e) => {
     return;
   }
 
-  await agregarCliente(nuevoCliente);
+  await agregarCliente(nuevoCliente);// Agregar el nuevo cliente a la base de datos
   form.reset();
   cargarClientes();
 });
 
-async function cargarClientes() {
+async function cargarClientes() {// Esta función carga los clientes desde la base de datos y los muestra en la tabla
   const clientes = await obtenerClientes();
   const lista = document.getElementById("lista-clientes");
   lista.innerHTML = "";
 
-  clientes.forEach((cliente) => {
+  clientes.forEach((cliente) => {// Por cada cliente, creamos una fila en la tabla
+    // Verificamos si el cliente tiene un id_persona válido
     const fila = document.createElement("tr");
     fila.innerHTML = `
     <td>${cliente.id_cliente}</td>
@@ -76,21 +77,21 @@ async function cargarClientes() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", cargarClientes);
+document.addEventListener("DOMContentLoaded", cargarClientes);// Añadir el evento para cargar los clientes al cargar la página
 
 // Cargar clientes al iniciar
 cargarClientes();
 
 import { supabase } from "./supabaseClient.js";
 
-async function cargarPersonasEnSelect() {
+async function cargarPersonasEnSelect() {// Esta función carga las personas desde la base de datos y las añade al select
   const { data, error } = await supabase.from("persona").select("*");
   if (error) {
     console.error("Error al cargar personas:", error.message);
     return;
   }
 
-  const select = document.getElementById("id_persona");
+  const select = document.getElementById("id_persona");// Obtener el elemento select por su ID
   data.forEach((p) => {
     const option = document.createElement("option");
     option.value = p.id_persona;
@@ -99,4 +100,4 @@ async function cargarPersonasEnSelect() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", cargarPersonasEnSelect);
+document.addEventListener("DOMContentLoaded", cargarPersonasEnSelect);// Añadir el evento para cargar las personas al cargar la página

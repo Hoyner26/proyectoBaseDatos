@@ -1,19 +1,19 @@
 // modulos/productos.js
 import { supabase } from './supabaseClient.js';
 
-export async function obtenerProductos() {
+export async function obtenerProductos() {// Esta función obtiene todos los productos de la base de datos
   const { data, error } = await supabase.from('producto').select('*');
   if (error) console.error('Error al obtener productos:', error.message);
   return data || [];
 }
 
-export async function agregarProducto(producto) {
+export async function agregarProducto(producto) {// Esta función agrega un nuevo producto a la base de datos
   const { error } = await supabase.from('producto').insert([producto]);
   if (error) console.error('Error al insertar producto:', error.message);
 }
 
 
-export async function eliminarProductoPorId(id) {
+export async function eliminarProductoPorId(id) {// Esta función elimina un producto por su id_producto
 
   // 0. Eliminar de detalle_venta
   const { error: errorDetalleVenta } = await supabase
@@ -49,11 +49,11 @@ export async function eliminarProductoPorId(id) {
   }
 }
 
-function cargarTablaProductos() {
+function cargarTablaProductos() {// Esta función carga los productos en la tabla del HTML
   const tbody = document.getElementById("tabla-productos");
   tbody.innerHTML = "";
 
-  productos.forEach((producto) => {
+  productos.forEach((producto) => {// Iteramos sobre cada producto y creamos una fila en la tabla
     const fila = document.createElement("tr");
 
     fila.innerHTML = `
@@ -70,4 +70,4 @@ function cargarTablaProductos() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", cargarTablaProductos);
+document.addEventListener("DOMContentLoaded", cargarTablaProductos);// Añadimos el evento para cargar la tabla al cargar la página

@@ -8,7 +8,7 @@ const form = document.getElementById('producto-form');
 
 
 
-form?.addEventListener('submit', async (e) => {
+form?.addEventListener('submit', async (e) => {// Añadir un evento de envío al formulario de productos
   e.preventDefault();
   const nuevo = {
     id_producto: parseInt(document.getElementById('id_producto').value),
@@ -35,7 +35,7 @@ form?.addEventListener('submit', async (e) => {
 
 
 
-async function cargarProductos() {
+async function cargarProductos() {// Esta función carga los productos desde la base de datos y los muestra en la tabla
   const productos = await obtenerProductos();
   const lista = document.getElementById('lista-productos');
   lista.innerHTML = '';
@@ -59,7 +59,7 @@ async function cargarProductos() {
 
 
 
-  document.querySelectorAll('.eliminar-btn').forEach(boton => {
+  document.querySelectorAll('.eliminar-btn').forEach(boton => {// Añadimos un evento de clic a cada botón de eliminar
     boton.addEventListener('click', async () => {
       const id = boton.dataset.id;
       if (confirm(`¿Seguro que desea eliminar el producto con ID ${id}?`)) {

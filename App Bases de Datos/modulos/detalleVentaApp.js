@@ -1,12 +1,12 @@
 import { supabase } from "./supabaseClient.js";
 
-async function cargarDetalleVenta() {
+async function cargarDetalleVenta() {// Esta función carga los detalles de una venta específica al cargar la página
   const params = new URLSearchParams(window.location.search);
   const idVenta = params.get("id");
   if (!idVenta) return;
 
   const { data: venta, error } = await supabase
-    .from("venta")
+    .from("venta")// Consultamos la tabla 'venta' para obtener los detalles de la venta
     .select(
       `
       id_venta, fecha, tipo_pago, estado_pago, total,
@@ -26,7 +26,7 @@ async function cargarDetalleVenta() {
     .eq("id_venta", idVenta)
     .single();
 
-  if (error) {
+  if (error) {// Si hay un error al cargar la venta, lo mostramos en la consola
     console.error("Error cargando venta:", error);
     return;
   }
@@ -48,7 +48,7 @@ async function cargarDetalleVenta() {
   ).toFixed(2);
 
   const tbody = document.getElementById("productos-tbody");
-  venta.detalle_venta.forEach((det) => {
+  venta.detalle_venta.forEach((det) => {// Por cada detalle de venta, creamos una fila en la tabla
     const subtotal = det.precio_unitario * det.cantidad;
     const row = document.createElement("tr");
     row.innerHTML = `

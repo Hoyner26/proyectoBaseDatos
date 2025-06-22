@@ -1,11 +1,11 @@
 import { obtenerInventario, agregarInventario, eliminarInventario } from "./inventario.js";
 import { obtenerProductos } from "./productos.js";
-
+// Importar las funciones necesarias para manejar el inventario y los productos
 const form = document.getElementById('form-inventario');
 const idSelect = document.getElementById('id_producto_select');
 const nombreSelect = document.getElementById('nombre_producto_select');
 
-form?.addEventListener('submit', async (e) => {
+form?.addEventListener('submit', async (e) => {// Añadir un evento de envío al formulario de inventario
   e.preventDefault();
   const nuevo = {
     id_producto: parseInt(document.getElementById('id_producto_select').value),
@@ -19,7 +19,7 @@ form?.addEventListener('submit', async (e) => {
   cargarInventarios();
 });
 
-async function cargarInventarios() {
+async function cargarInventarios() {// Esta función carga los inventarios desde la base de datos y los muestra en la tabla
   const inventarios = await obtenerInventario();
   const lista = document.getElementById('tabla-inventario');
   lista.innerHTML = '';
@@ -51,7 +51,7 @@ async function cargarInventarios() {
     
   });
 
-  document.querySelectorAll('.eliminar-btn').forEach(boton => {
+  document.querySelectorAll('.eliminar-btn').forEach(boton => {// Añadimos un evento de clic a cada botón de eliminar
   boton.addEventListener('click', async () => {
     const id = boton.dataset.id;
     if (confirm(`¿Seguro que desea eliminar el inventario con ID de producto ${id}?`)) {
@@ -65,13 +65,13 @@ async function cargarInventarios() {
 // ✅ Solo esta línea para esperar al DOM
 document.addEventListener('DOMContentLoaded', cargarInventarios);
 
-async function cargarProductosSelects() {
+async function cargarProductosSelects() {// Esta función carga los productos desde la base de datos y los muestra en los selects
   const productos = await obtenerProductos();
   if (!idSelect || !nombreSelect) return;
   idSelect.innerHTML = '<option value="" disabled selected>Seleccione ID</option>';
   nombreSelect.innerHTML = '<option value="" disabled selected>Seleccione Nombre</option>';
 
-  productos.forEach(p => {
+  productos.forEach(p => {// Por cada producto, creamos una opción en los selects
     const optId = document.createElement('option');
     optId.value = p.id_producto;
     optId.textContent = p.id_producto;

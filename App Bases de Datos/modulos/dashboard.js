@@ -1,11 +1,11 @@
 // dashboard.js
 import { supabase } from "./supabaseClient.js";
-
+// Elementos del DOM donde se mostrarán los datos del dashboard
 const totalPersonasElement = document.getElementById("total-personas");
 const totalProductosElement = document.getElementById("total-productos");
 const totalVentasElement = document.getElementById("total-ventas");
 
-const fetchDashboardData = async () => {
+const fetchDashboardData = async () => {// Esta función obtiene los datos del dashboard y los muestra en los elementos del DOM
   try {
     // 1. Contar personas
     const { count: totalPersonas, error: errorPersonas } = await supabase
@@ -42,4 +42,4 @@ const fetchDashboardData = async () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", fetchDashboardData);
+document.addEventListener("DOMContentLoaded", fetchDashboardData);// Añadir el evento para cargar los datos del dashboard al cargar la página

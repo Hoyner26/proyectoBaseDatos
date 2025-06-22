@@ -46,7 +46,7 @@ async function cargarDetallesPersona() {
       correosList.innerHTML =
         "<li>No hay correos electrónicos registrados.</li>";
     }
-  } else {
+  } else {// Si no se encuentra la persona, mostramos un mensaje de error
     document.getElementById("persona-details").innerHTML =
       "<p>Persona no encontrada.</p>";
   }

@@ -7,7 +7,7 @@ import {
 
 const form = document.getElementById("empleado-form");
 
-form?.addEventListener("submit", async (e) => {
+form?.addEventListener("submit", async (e) => {// Esta función se ejecuta al enviar el formulario
   e.preventDefault();
   const nuevo = {
     id_persona: parseInt(document.getElementById("id_persona").value),
@@ -17,7 +17,7 @@ form?.addEventListener("submit", async (e) => {
   };
 
   // ✅ VALIDACIÓN: evitar duplicados por id_persona
-  const empleados = await obtenerEmpleados();
+  const empleados = await obtenerEmpleados();// Obtenemos la lista de empleados existentes
   const yaExiste = empleados.some((e) => e.id_persona === nuevo.id_persona);
   if (yaExiste) {
     alert("⚠️ Ya existe un empleado con ese ID de persona.");
@@ -29,12 +29,12 @@ form?.addEventListener("submit", async (e) => {
   cargarEmpleados();
 });
 
-async function cargarEmpleados() {
+async function cargarEmpleados() {// Esta función carga los empleados desde la base de datos y los muestra en la tabla
   const empleados = await obtenerEmpleados();
   const lista = document.getElementById("lista-empleados");
   lista.innerHTML = "";
 
-  empleados.forEach((empleado) => {
+  empleados.forEach((empleado) => {// Por cada empleado, creamos una fila en la tabla
     const fila = document.createElement("tr");
     fila.innerHTML = `
   <td>${empleado.id_empleado}</td>
@@ -50,7 +50,7 @@ async function cargarEmpleados() {
     lista.appendChild(fila);
   });
 
-  document.querySelectorAll(".eliminar-btn").forEach((boton) => {
+  document.querySelectorAll(".eliminar-btn").forEach((boton) => {// Añadimos un evento de clic a cada botón de eliminar
     boton.addEventListener("click", async () => {
       const id = boton.dataset.id;
       if (confirm(`¿Seguro que desea eliminar el empleado con ID ${id}?`)) {
@@ -62,7 +62,7 @@ async function cargarEmpleados() {
 }
 
 import { supabase } from "./supabaseClient.js";
-async function cargarPersonasEnSelect() {
+async function cargarPersonasEnSelect() {// Esta función carga las personas desde la base de datos y las muestra en un select
   const { data, error } = await supabase.from("persona").select("*");
   if (error) {
     console.error("Error cargando personas:", error.message);
@@ -78,6 +78,6 @@ async function cargarPersonasEnSelect() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", cargarPersonasEnSelect);
+document.addEventListener("DOMContentLoaded", cargarPersonasEnSelect);// Añadimos el evento para cargar las personas al cargar la página
 
-cargarEmpleados();
+cargarEmpleados();// Cargamos los empleados al cargar la página

@@ -1,7 +1,7 @@
 // personas.js
 import { supabase } from "./supabaseClient.js";
 
-export async function agregarPersona(persona) {
+export async function agregarPersona(persona) {// Esta función agrega una nueva persona a la base de datos
   const { data: personaData, error: personaError } = await supabase
     .from("persona")
     .insert({
@@ -14,12 +14,12 @@ export async function agregarPersona(persona) {
       senas: persona.senas,
     });
 
-  if (personaError) {
+  if (personaError) {// Si hay un error al insertar la persona, lo mostramos en la consola
     console.error("Error insertando persona:", personaError);
     throw personaError;
   }
 
-  const telefonos = persona.telefonos.map((tel) => ({
+  const telefonos = persona.telefonos.map((tel) => ({// Esta parte mapea los teléfonos de la persona a un formato adecuado para la inserción
     id_persona: persona.id_persona,
     telefono: tel,
   }));
@@ -48,7 +48,7 @@ export async function agregarPersona(persona) {
   }
 }
 
-export async function obtenerPersonas() {
+export async function obtenerPersonas() {// Esta función obtiene todas las personas desde la vista 'view_personas_info_full'
   const { data, error } = await supabase
     .from("view_personas_info_full")
     .select(`
@@ -93,7 +93,7 @@ export async function obtenerPersonas() {
   return Array.from(personasMap.values());
 }
 
-export async function obtenerPersonasOtro() {
+export async function obtenerPersonasOtro() {// Esta función obtiene todas las personas desde la tabla 'persona' y sus relaciones
   const { data, error } = await supabase.from("persona").select(`
       id_persona,
       nombre,
@@ -139,7 +139,7 @@ export async function obtenerPersonasOtro() {
   }));
 }
 
-export async function eliminarPersonaPorId(id) {
+export async function eliminarPersonaPorId(id) {// Esta función elimina una persona por su ID, junto con sus teléfonos y correos relacionados
   // 1. Eliminar teléfonos
   const { error: errorTelefonos } = await supabase
     .from("telefonos_personas")
@@ -180,7 +180,7 @@ export async function eliminarPersonaPorId(id) {
   }
 }
 
-export async function obtenerPersonaPorId(id) {
+export async function obtenerPersonaPorId(id) {// Esta función obtiene una persona específica por su ID, junto con sus teléfonos y correos
   const { data, error } = await supabase
     .from("persona")
     .select(`
